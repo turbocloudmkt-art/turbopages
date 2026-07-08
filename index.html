@@ -727,6 +727,46 @@
     50%{box-shadow:0 0 0 5px rgba(14,159,110,0)}
   }
 
+  /* ============ PERFORMANCE / PAGESPEED ============ */
+  .psi-band{display:grid;grid-template-columns:.95fr 1.05fr;gap:52px;align-items:center}
+  .psi-band > *{min-width:0}
+  .psi-copy .lead{margin-top:14px}
+  .psi-copy ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:26px}
+  .psi-copy li{display:flex;gap:12px;align-items:flex-start;font-size:.97rem;color:var(--ink-2);font-weight:500}
+  .psi-copy li .tick{color:var(--green);font-weight:800;flex-shrink:0}
+  .psi-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:20px;
+    box-shadow:0 44px 84px -42px rgba(25,16,70,.4);overflow:hidden;
+  }
+  .psi-head{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    padding:14px 18px;border-bottom:1px solid var(--border);background:#FCFBFF;
+  }
+  .psi-url{
+    flex:1;min-width:150px;
+    font-family:var(--font-mono);font-size:.7rem;color:var(--muted);
+    border:1px solid var(--border);border-radius:8px;background:#fff;
+    padding:8px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .psi-tabs{display:flex;gap:4px}
+  .psi-tab{font-family:var(--font-mono);font-size:.66rem;padding:6px 11px;border-radius:8px;color:var(--muted)}
+  .psi-tab.active{background:var(--violet-soft);color:var(--violet-deep);font-weight:600}
+  .psi-rings{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:26px 18px 18px}
+  .psi-item{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center}
+  .psi-item .ring{width:64px;height:64px}
+  .psi-item .ring > b{font-size:.95rem}
+  .psi-item small{font-size:.64rem;font-weight:600;color:var(--ink-2);line-height:1.35}
+  .psi-note{padding:0 18px 18px;font-family:var(--font-mono);font-size:.6rem;color:var(--muted);text-align:center}
+  /* nota de cada anel via --p (0 a 1) */
+  .psi-item .ring .bar{stroke-dashoffset:calc(163.4*(1 - var(--p,.9)))}
+  @media (prefers-reduced-motion: no-preference){
+    .psi-card .ring .bar{stroke-dashoffset:163.4;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1) .3s}
+    .reveal.is-in .psi-card .ring .bar{stroke-dashoffset:calc(163.4*(1 - var(--p,.9)))}
+    .reveal.is-in .psi-item:nth-child(2) .bar{transition-delay:.55s}
+    .reveal.is-in .psi-item:nth-child(3) .bar{transition-delay:.8s}
+    .reveal.is-in .psi-item:nth-child(4) .bar{transition-delay:1.05s}
+  }
+
   /* ============ DEPOIMENTOS ============ */
   .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .quote{
@@ -922,6 +962,7 @@
     .editor-shot{padding:0 40px 44px}
     .templates{grid-template-columns:1fr 1fr}
     .dash-band{grid-template-columns:1fr;gap:40px}
+    .psi-band{grid-template-columns:1fr;gap:40px}
     .quotes{grid-template-columns:1fr}
     .plans{grid-template-columns:1fr;max-width:460px;margin:0 auto}
     .plan-tag{min-height:0}
@@ -966,6 +1007,7 @@
     .footer-grid{grid-template-columns:1fr;gap:32px}
   }
   @media (max-width:510px){
+    .psi-rings{grid-template-columns:repeat(2,1fr);gap:18px 10px}
     /* editor demo: chat empilhado sobre o preview */
     .editor-app{flex-direction:column;min-height:0}
     .chat-pane{width:100%;border-right:none;border-bottom:1px solid var(--panel-border)}
@@ -1131,6 +1173,64 @@
       <div class="step reveal">
         <h3>Publique na TurboCloud</h3>
         <p>Um clique e o site vai ao ar na hospedagem de alta performance, com SSL, CDN e domínio configurados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERFORMANCE / PAGESPEED ============ -->
+<section class="section" id="performance">
+  <div class="wrap">
+    <div class="psi-band reveal js-count">
+      <div class="psi-copy">
+        <div class="eyebrow">Performance</div>
+        <h2>Sites bonitos e rápidos de carregar</h2>
+        <p class="lead">A IA cuida do design, a TurboCloud cuida da velocidade. Cada site sai com CDN global, cache e compressão automática, e chega ao PageSpeed do Google com notas verdes, sem você otimizar nada.</p>
+        <ul>
+          <li><span class="tick">✓</span> Nota verde de desempenho no celular, onde seus clientes estão</li>
+          <li><span class="tick">✓</span> SEO 100: pronto para ser encontrado no Google</li>
+          <li><span class="tick">✓</span> Acessibilidade cuidada em cada página gerada</li>
+        </ul>
+      </div>
+      <div class="psi-card" data-tilt aria-label="Relatório PageSpeed Insights de um site criado no TurboPages">
+        <div class="psi-head">
+          <span class="psi-url">cafeteria.turbopages.site</span>
+          <div class="psi-tabs">
+            <span class="psi-tab active">📱 Celular</span>
+            <span class="psi-tab">💻 Computador</span>
+          </div>
+        </div>
+        <div class="psi-rings">
+          <div class="psi-item">
+            <span class="ring" style="--p:.97">
+              <svg viewBox="0 0 60 60" aria-hidden="true"><circle class="track" cx="30" cy="30" r="26"></circle><circle class="bar" cx="30" cy="30" r="26"></circle></svg>
+              <b class="num" data-target="97">97</b>
+            </span>
+            <small>Desempenho</small>
+          </div>
+          <div class="psi-item">
+            <span class="ring" style="--p:.96">
+              <svg viewBox="0 0 60 60" aria-hidden="true"><circle class="track" cx="30" cy="30" r="26"></circle><circle class="bar" cx="30" cy="30" r="26"></circle></svg>
+              <b class="num" data-target="96">96</b>
+            </span>
+            <small>Acessibilidade</small>
+          </div>
+          <div class="psi-item">
+            <span class="ring" style="--p:.95">
+              <svg viewBox="0 0 60 60" aria-hidden="true"><circle class="track" cx="30" cy="30" r="26"></circle><circle class="bar" cx="30" cy="30" r="26"></circle></svg>
+              <b class="num" data-target="95">95</b>
+            </span>
+            <small>Práticas<br>recomendadas</small>
+          </div>
+          <div class="psi-item">
+            <span class="ring" style="--p:1">
+              <svg viewBox="0 0 60 60" aria-hidden="true"><circle class="track" cx="30" cy="30" r="26"></circle><circle class="bar" cx="30" cy="30" r="26"></circle></svg>
+              <b class="num" data-target="100">100</b>
+            </span>
+            <small>SEO</small>
+          </div>
+        </div>
+        <div class="psi-note">medido com Google PageSpeed Insights · site criado com TurboPages + TurboCloud</div>
       </div>
     </div>
   </div>
