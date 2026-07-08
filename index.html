@@ -329,7 +329,7 @@
   .status-live{opacity:1}
 
   @media (prefers-reduced-motion: no-preference){
-    .prompt-text{animation:type 9s steps(46) infinite;width:46ch}
+    .prompt-text{animation:type 9s steps(43) infinite;width:43ch}
     .canvas-hero .sk{animation:build 9s ease infinite}
     .canvas-cards .cell{animation:none}
     .canvas-cards .cell:nth-child(1){animation:build-c1 9s ease infinite}
@@ -341,9 +341,9 @@
     .prompt-box{animation:prompt-glow 9s ease infinite}
   }
   @keyframes type{
-    0%{width:0ch;animation-timing-function:steps(46)}
-    30%{width:46ch}
-    100%{width:46ch}
+    0%{width:0ch;animation-timing-function:steps(43)}
+    30%{width:43ch}
+    100%{width:43ch}
   }
   @keyframes prompt-glow{
     0%,28%{box-shadow:none}
@@ -1058,7 +1058,7 @@
         <div class="builder-body">
           <div class="prompt-box">
             <span class="spark" aria-hidden="true">✦</span>
-            <span class="prompt-text">Crie um site para minha cafeteria com reservas</span>
+            <span class="prompt-text">Crie um site para minha cafeteria artesanal</span>
             <span class="prompt-send">Gerar</span>
           </div>
           <div class="canvas">
@@ -1076,7 +1076,7 @@
               <div class="sf-hero">
                 <b>Café Aurora</b>
                 <span>Cafés especiais e brunch artesanal</span>
-                <i>Reservar mesa</i>
+                <i>Chamar no WhatsApp</i>
               </div>
               <div class="sf-cards">
                 <div><em>☕</em><b>Espresso</b><span>R$ 8</span></div>
@@ -1181,10 +1181,10 @@
       </div>
       <div class="feature reveal">
         <div class="feature-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 8.5H8L6 3H3"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 109-9 9.5 9.5 0 00-6.5 2.8L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3.5 2"/></svg>
         </div>
-        <h3>Loja e reservas</h3>
-        <p>Adicione catálogo, pagamentos e agendamentos para vender e receber clientes direto no site.</p>
+        <h3>Histórico de versões</h3>
+        <p>Toda alteração fica salva. Não gostou do resultado? Volte para qualquer versão com um clique.</p>
       </div>
     </div>
 
@@ -1193,7 +1193,7 @@
       <div class="editor-copy">
         <div class="eyebrow">Editor com IA</div>
         <h2>Edite qualquer coisa conversando</h2>
-        <p class="lead">"Deixe o topo mais escuro", "adicione depoimentos", "troque o botão por 'Reservar mesa'". A IA entende e aplica em segundos, e você mantém o controle total.</p>
+        <p class="lead">"Deixe o topo mais escuro", "adicione depoimentos", "troque o botão por 'Chamar no WhatsApp'". A IA entende e aplica em segundos, e você mantém o controle total.</p>
         <ul>
           <li><span class="tick">✓</span> Comandos em português, do seu jeito</li>
           <li><span class="tick">✓</span> Visualize em desktop, tablet e celular</li>
@@ -1204,8 +1204,8 @@
         <div class="editor-app" data-tilt aria-label="Demonstração do editor por conversa">
           <div class="chat-pane">
             <div class="label">Assistente IA</div>
-            <div class="msg msg-user">Deixe o topo mais escuro e adicione um botão de reservas</div>
-            <div class="msg msg-ai">Feito! Atualizei o topo e adicionei o botão "Reservar mesa". ✦</div>
+            <div class="msg msg-user">Deixe o topo mais escuro e adicione um botão de WhatsApp</div>
+            <div class="msg msg-ai">Feito! Atualizei o topo e adicionei o botão de WhatsApp. ✦</div>
             <div class="chat-gen"><i></i>Página gerada · <u>↺ Restaurar</u></div>
             <div class="chat-input">Peça uma alteração…</div>
           </div>
@@ -1247,7 +1247,7 @@
           <span class="chips"><i></i><i></i><i></i></span>
         </div>
         <div class="template-meta">
-          <div><b>Cafeteria</b><span>cardápio e reservas</span></div>
+          <div><b>Cafeteria</b><span>cardápio e WhatsApp</span></div>
           <span class="cat">alimentação</span>
         </div>
       </div>
@@ -1267,7 +1267,7 @@
           <span class="chips"><i></i><i></i><i></i></span>
         </div>
         <div class="template-meta">
-          <div><b>Loja online</b><span>catálogo e pagamentos</span></div>
+          <div><b>Loja online</b><span>vitrine de produtos</span></div>
           <span class="cat">e-commerce</span>
         </div>
       </div>
@@ -1277,7 +1277,7 @@
           <span class="chips"><i></i><i></i><i></i></span>
         </div>
         <div class="template-meta">
-          <div><b>Consultoria</b><span>serviços e agendamento</span></div>
+          <div><b>Consultoria</b><span>serviços e contato</span></div>
           <span class="cat">profissional</span>
         </div>
       </div>
@@ -1358,7 +1358,7 @@
     </div>
     <div class="quotes">
       <div class="quote reveal">
-        <p>Descrevi minha cafeteria numa frase e em dez minutos o site estava no ar, com cardápio e tudo. Meus clientes reservam mesa direto por lá.</p>
+        <p>Descrevi minha cafeteria numa frase e em dez minutos o site estava no ar, com cardápio e tudo. Meus clientes me chamam pelo WhatsApp direto do site.</p>
         <div class="quote-who">
           <span class="avatar">MR</span>
           <div><b>Mariana Rocha</b><span>Café Alameda · Curitiba</span></div>
@@ -1420,7 +1420,7 @@
         <ul>
           <li><span class="tick">✓</span> 3 sites criados por IA</li>
           <li><span class="tick">✓</span> Domínio próprio incluso</li>
-          <li><span class="tick">✓</span> Loja, pagamentos e reservas</li>
+          <li><span class="tick">✓</span> Modo alta qualidade de IA</li>
           <li><span class="tick">✓</span> Edições ilimitadas por IA</li>
           <li><span class="tick">✓</span> Suporte prioritário</li>
         </ul>
@@ -1680,7 +1680,7 @@
   const rotator = document.getElementById('rotator');
   const phrases = [
     'crie um site para minha barbearia',
-    'crie uma loja online para meus doces',
+    'crie um site para minha loja de doces',
     'crie um site para minha clínica',
     'crie um site para meu restaurante'
   ];
