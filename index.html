@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TurboPages | Seu site pronto em minutos, com IA</title>
+<meta name="description" content="Descreva seu negócio e a IA do TurboPages cria um site completo, rápido e no ar, com hospedagem TurboCloud, SSL e domínio próprio inclusos.">
+<meta property="og:title" content="TurboPages | Seu site pronto em minutos, com IA">
+<meta property="og:description" content="Do texto ao site no ar em minutos. Criação por IA com a performance de hospedagem da TurboCloud.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/turbopages-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --paper:#FBFAFF;
+    --surface:#FFFFFF;
+    --ink:#191046;
+    --ink-2:#2B2158;
+    --muted:#6A6390;
+    --violet:#6D28D9;
+    --violet-bright:#8B5CF6;
+    --violet-deep:#4C1D95;
+    --violet-soft:#F2EDFD;
+    --border:#E8E4F5;
+    --green:#0E9F6E;
+    --green-soft:#E3F7EF;
+    --panel:#160F38;        /* janelas de app escuras sobre página clara */
+    --panel-2:#1E1547;
+    --panel-border:rgba(255,255,255,.09);
+    --radius:16px;
+    --font-display:'Nunito',sans-serif;
+    --font-body:'Manrope',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:var(--violet);text-decoration:none}
+  img{max-width:100%;display:block}
+  button{font-family:inherit}
+  ::selection{background:var(--violet);color:#fff}
+  :focus-visible{outline:3px solid var(--violet-bright);outline-offset:3px;border-radius:4px}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  section{scroll-margin-top:88px}
+
+  /* barra de progresso de leitura */
+  .progress{
+    position:fixed;top:0;left:0;right:0;height:3px;z-index:100;
+    background:linear-gradient(90deg,var(--violet),var(--violet-bright) 60%,#5EE6B0);
+    transform-origin:0 50%;transform:scaleX(0);pointer-events:none;
+  }
+
+  /* ============ TIPOGRAFIA ============ */
+  h1,h2,h3{font-family:var(--font-display);color:var(--ink);letter-spacing:-.015em}
+  h1{font-size:clamp(2.3rem,4.6vw,3.4rem);font-weight:900;line-height:1.06}
+  h2{font-size:clamp(1.9rem,3.6vw,2.75rem);font-weight:900;line-height:1.08}
+  h3{font-size:1.22rem;font-weight:900;line-height:1.25}
+  .lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);line-height:1.65}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.76rem;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;
+    color:var(--violet);
+    display:inline-flex;align-items:center;gap:10px;
+    margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--violet-bright);border-radius:2px}
+
+  /* ============ BOTÕES ============ */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-family:var(--font-display);font-weight:700;font-size:1rem;
+    padding:15px 28px;border-radius:13px;border:none;cursor:pointer;
+    transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    color:#fff;background:var(--violet);
+    box-shadow:0 12px 28px -10px rgba(109,40,217,.55);
+    position:relative;overflow:hidden;
+  }
+  .btn-primary::after{
+    content:"";position:absolute;top:0;bottom:0;left:-45%;width:40%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);
+    transform:skewX(-20deg);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .btn-primary:hover::after{animation:shine .85s ease}
+  }
+  @keyframes shine{from{left:-45%}to{left:135%}}
+  .btn-primary:hover{background:var(--violet-deep);color:#fff;transform:translateY(-2px);box-shadow:0 16px 34px -10px rgba(109,40,217,.6)}
+  .btn-ghost{
+    color:var(--ink);background:var(--surface);
+    border:1.5px solid var(--border);
+  }
+  .btn-ghost:hover{border-color:var(--violet-bright);color:var(--violet);transform:translateY(-2px)}
+  .btn-sm{padding:11px 20px;font-size:.92rem;border-radius:11px}
+
+  /* ============ NAV ============ */
+  .nav{
+    position:sticky;top:0;z-index:60;
+    background:rgba(251,250,255,.85);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s ease,box-shadow .25s ease;
+  }
+  .nav.is-scrolled{border-bottom-color:var(--border);box-shadow:0 6px 24px -18px rgba(25,16,70,.35)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:11px 24px;max-width:1180px;margin:0 auto}
+  .nav-logo{display:flex;align-items:center}
+  .nav-logo img{height:44px;width:auto}
+  .nav-links{display:flex;align-items:center;gap:30px;font-size:.95rem;font-weight:600}
+  .nav-links a{color:var(--ink-2);position:relative;padding:4px 0}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--violet-bright);border-radius:2px;transition:width .2s ease}
+  .nav-links a:hover{color:var(--violet)}
+  .nav-links a:hover::after{width:100%}
+  .nav-actions{display:flex;align-items:center;gap:16px}
+  .nav-actions .login{font-weight:700;font-size:.95rem;color:var(--ink-2)}
+  .nav-actions .login:hover{color:var(--violet)}
+  .nav-burger{
+    display:none;background:none;border:1.5px solid var(--border);border-radius:10px;
+    width:42px;height:42px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  }
+  .nav-burger span{width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+  .nav-mobile{display:none;flex-direction:column;gap:4px;padding:12px 24px 20px;border-top:1px solid var(--border);background:var(--paper)}
+  .nav-mobile a{padding:11px 4px;font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--border)}
+  .nav-mobile a:last-child{border-bottom:none}
+  .nav-mobile.is-open{display:flex}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    padding:84px 0 56px;
+    background:
+      radial-gradient(circle at 14% 8%, rgba(139,92,246,.10), transparent 42%),
+      radial-gradient(circle at 88% 20%, rgba(109,40,217,.08), transparent 40%);
+  }
+  /* malha de pontos: o site "em construção" */
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(25,16,70,.10) 1px, transparent 1.4px);
+    background-size:26px 26px;
+    mask-image:linear-gradient(180deg,#000 0%,transparent 78%);
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 78%);
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+  .hero-grid > *{min-width:0}
+
+  /* aurora ambiente do hero */
+  .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+  .aurora span{position:absolute;border-radius:50%;filter:blur(70px)}
+  .aurora span:nth-child(1){width:440px;height:440px;top:-140px;left:-90px;opacity:.4;background:radial-gradient(circle,#8B5CF6,transparent 70%)}
+  .aurora span:nth-child(2){width:380px;height:380px;top:6%;right:-110px;opacity:.35;background:radial-gradient(circle,#6D28D9,transparent 70%)}
+  .aurora span:nth-child(3){width:320px;height:320px;bottom:-160px;left:34%;opacity:.16;background:radial-gradient(circle,#34D399,transparent 70%)}
+  @media (prefers-reduced-motion: no-preference){
+    .aurora span:nth-child(1){animation:drift1 16s ease-in-out infinite alternate}
+    .aurora span:nth-child(2){animation:drift2 21s ease-in-out infinite alternate}
+    .aurora span:nth-child(3){animation:drift3 25s ease-in-out infinite alternate}
+  }
+  @keyframes drift1{to{transform:translate(70px,50px) scale(1.18)}}
+  @keyframes drift2{to{transform:translate(-60px,70px) scale(1.12)}}
+  @keyframes drift3{to{transform:translate(50px,-40px) scale(1.2)}}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--font-mono);font-size:.78rem;font-weight:500;
+    color:var(--violet-deep);
+    background:var(--violet-soft);border:1px solid #E0D4FA;
+    padding:7px 15px;border-radius:999px;margin-bottom:26px;
+  }
+  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px var(--green-soft)}
+  .hero h1 em{
+    font-style:normal;color:var(--violet);
+    background:linear-gradient(90deg,var(--violet),var(--violet-bright),#7C3AED,var(--violet));
+    background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .hero h1 em{color:transparent;animation:shimmer 6s linear infinite}
+    /* entrada orquestrada da página */
+    .hero-badge,.hero h1,.hero p.lead,.hero-ctas,.hero-proofs{animation:rise .75s cubic-bezier(.2,.7,.2,1) both}
+    .hero h1{animation-delay:.08s}
+    .hero p.lead{animation-delay:.16s}
+    .hero-ctas{animation-delay:.24s}
+    .hero-proofs{animation-delay:.32s}
+    .builder-wrap{animation:builder-in 1s cubic-bezier(.2,.7,.2,1) both .2s}
+  }
+  @keyframes shimmer{to{background-position:-220% 0}}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @keyframes builder-in{from{opacity:0;transform:translateY(34px) scale(.95)}to{opacity:1;transform:none}}
+  .hero p.lead{max-width:520px;margin:22px 0 32px}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+  .hero-proofs{display:flex;gap:24px;flex-wrap:wrap;font-size:.88rem;font-weight:600;color:var(--muted)}
+  .hero-proofs span{display:inline-flex;align-items:center;gap:8px}
+  .hero-proofs .tick{color:var(--green);font-weight:800}
+
+  /* ---- Assinatura: o construtor ---- */
+  .builder{
+    position:relative;border-radius:20px;overflow:hidden;
+    background:var(--panel);border:1px solid var(--panel-border);
+    box-shadow:0 48px 90px -38px rgba(25,16,70,.5), 0 18px 40px -24px rgba(109,40,217,.35);
+  }
+  .builder-bar{
+    display:flex;align-items:center;gap:7px;
+    padding:13px 16px;border-bottom:1px solid var(--panel-border);
+    background:rgba(255,255,255,.03);
+  }
+  .builder-bar i{width:11px;height:11px;border-radius:50%;display:block}
+  .builder-bar i:nth-child(1){background:#FF5F57}
+  .builder-bar i:nth-child(2){background:#FEBC2E}
+  .builder-bar i:nth-child(3){background:#28C840}
+  .builder-bar .url{margin-left:12px;font-family:var(--font-mono);font-size:.72rem;color:#8B84B0}
+  .builder-body{padding:20px}
+
+  .prompt-box{
+    display:flex;align-items:center;gap:12px;
+    padding:13px 16px;border-radius:12px;
+    border:1px solid rgba(139,92,246,.45);
+    background:rgba(139,92,246,.10);
+    margin-bottom:18px;
+  }
+  .prompt-box .spark{color:var(--violet-bright);font-size:1rem;flex-shrink:0}
+  .prompt-text{
+    font-family:var(--font-mono);font-size:.72rem;color:#E4DDFA;
+    white-space:nowrap;overflow:hidden;
+    max-width:100%;
+    border-right:2px solid var(--violet-bright);
+    padding-right:2px;
+  }
+  .prompt-send{
+    margin-left:auto;flex-shrink:0;
+    font-family:var(--font-display);font-weight:700;font-size:.74rem;
+    padding:8px 15px;border-radius:9px;color:#fff;background:var(--violet);
+  }
+
+  .canvas{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--panel-border);background:var(--panel-2)}
+  /* camada 1: esqueleto em construção (some ao final do ciclo) */
+  .site-skeleton{opacity:0}
+  /* camada 2: a página pronta da cafeteria */
+  .site-final{
+    position:absolute;inset:0;opacity:1;
+    display:flex;flex-direction:column;
+  }
+  .sf-hero{
+    flex:1.25;min-height:0;
+    background:linear-gradient(125deg,#4B2C20,#7B4B32);
+    display:flex;flex-direction:column;justify-content:center;gap:3px;
+    padding:12px 16px;
+  }
+  .sf-hero b{font-family:var(--font-display);font-weight:900;font-size:.98rem;color:#FFF8EE;line-height:1.15}
+  .sf-hero span{font-size:.6rem;color:rgba(255,248,238,.78)}
+  .sf-hero i{
+    font-style:normal;margin-top:5px;width:fit-content;
+    font-family:var(--font-display);font-weight:800;font-size:.58rem;
+    color:#3E2313;background:#F2A93B;
+    padding:4px 11px;border-radius:6px;
+  }
+  .sf-cards{
+    flex:1;min-height:0;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+    padding:9px 12px;background:#FFF6EA;
+  }
+  .sf-cards > div{
+    background:#fff;border:1px solid #F0E2CE;border-radius:8px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:1px;padding:3px;min-height:0;
+  }
+  .sf-cards em{font-style:normal;font-size:.82rem;line-height:1.2}
+  .sf-cards b{font-size:.56rem;color:#4B2C20;line-height:1.2}
+  .sf-cards span{font-family:var(--font-mono);font-size:.52rem;color:#A18468;line-height:1.2}
+  /* URL troca para o site publicado */
+  .builder-bar .url{display:grid}
+  .builder-bar .url > span{grid-area:1/1;white-space:nowrap}
+  .url-a{opacity:0}
+  .url-b{opacity:1;color:#5EE6B0}
+  @media (prefers-reduced-motion: no-preference){
+    .site-skeleton{animation:layer-out 9s ease infinite}
+    .site-final{animation:layer-in 9s ease infinite}
+    .url-a{animation:layer-out 9s ease infinite}
+    .url-b{animation:layer-in 9s ease infinite}
+  }
+  @keyframes layer-out{0%,56%{opacity:1}62%,96%{opacity:0}100%{opacity:1}}
+  @keyframes layer-in{0%,56%{opacity:0}62%,96%{opacity:1}100%{opacity:0}}
+  .canvas-hero{
+    height:98px;background:linear-gradient(120deg,#7C3AED,#4C1D95);
+    display:flex;flex-direction:column;justify-content:center;gap:8px;padding:18px;
+  }
+  .sk{border-radius:6px;background:rgba(255,255,255,.85)}
+  .canvas-hero .sk:nth-child(1){width:54%;height:12px}
+  .canvas-hero .sk:nth-child(2){width:72%;height:8px;background:rgba(255,255,255,.42)}
+  .canvas-hero .sk:nth-child(3){width:92px;height:24px;background:#fff;margin-top:4px;border-radius:8px}
+  .canvas-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:14px}
+  .canvas-cards .cell{
+    height:66px;border-radius:9px;
+    background:linear-gradient(160deg,rgba(139,92,246,.16),rgba(139,92,246,.05));
+    border:1px solid rgba(139,92,246,.18);
+    display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding:9px;
+  }
+  .canvas-cards .cell b{width:70%;height:6px;border-radius:4px;background:rgba(255,255,255,.5)}
+  .canvas-cards .cell u{width:45%;height:5px;border-radius:4px;background:rgba(255,255,255,.22)}
+
+  .builder-status{display:grid;margin-top:16px;min-height:24px}
+  .status-line{
+    grid-area:1/1;
+    display:flex;align-items:center;gap:9px;
+    font-family:var(--font-mono);font-size:.72rem;
+  }
+  .status-working{color:#9A92C4}
+  .status-working .spin{
+    width:13px;height:13px;border-radius:50%;flex-shrink:0;
+    border:2px solid var(--violet-bright);border-top-color:transparent;
+  }
+  .status-live{color:#5EE6B0}
+  .status-live .dot{width:8px;height:8px;border-radius:50%;background:#34D399;box-shadow:0 0 10px #34D399;flex-shrink:0}
+
+  /* estado base = cena final (funciona sem animação) */
+  .status-working{opacity:0}
+  .status-live{opacity:1}
+
+  @media (prefers-reduced-motion: no-preference){
+    .prompt-text{animation:type 9s steps(46) infinite;width:46ch}
+    .canvas-hero .sk{animation:build 9s ease infinite}
+    .canvas-cards .cell{animation:none}
+    .canvas-cards .cell:nth-child(1){animation:build-c1 9s ease infinite}
+    .canvas-cards .cell:nth-child(2){animation:build-c2 9s ease infinite}
+    .canvas-cards .cell:nth-child(3){animation:build-c3 9s ease infinite}
+    .status-working{animation:st-work 9s ease infinite}
+    .status-live{animation:st-live 9s ease infinite}
+    .status-working .spin{animation:spin 1s linear infinite}
+    .prompt-box{animation:prompt-glow 9s ease infinite}
+  }
+  @keyframes type{
+    0%{width:0ch;animation-timing-function:steps(46)}
+    30%{width:46ch}
+    100%{width:46ch}
+  }
+  @keyframes prompt-glow{
+    0%,28%{box-shadow:none}
+    31%{box-shadow:0 0 0 4px rgba(139,92,246,.22)}
+    36%,100%{box-shadow:none}
+  }
+  @keyframes build{
+    0%,32%{opacity:0;transform:translateY(8px)}
+    40%,100%{opacity:1;transform:translateY(0)}
+  }
+  @keyframes build-c1{0%,40%{opacity:0;transform:translateY(10px)}47%,100%{opacity:1;transform:translateY(0)}}
+  @keyframes build-c2{0%,45%{opacity:0;transform:translateY(10px)}52%,100%{opacity:1;transform:translateY(0)}}
+  @keyframes build-c3{0%,50%{opacity:0;transform:translateY(10px)}57%,100%{opacity:1;transform:translateY(0)}}
+  @keyframes st-work{
+    0%,30%{opacity:0}
+    34%,60%{opacity:1}
+    64%,100%{opacity:0}
+  }
+  @keyframes st-live{
+    0%,64%{opacity:0}
+    68%,96%{opacity:1}
+    100%{opacity:0}
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* tilt 3D controlado por JS */
+  [data-tilt]{transition:transform .3s ease;will-change:transform}
+
+  /* chips flutuantes ao redor do builder */
+  .fx-chip{
+    position:absolute;z-index:2;
+    font-family:var(--font-mono);font-size:.68rem;font-weight:600;
+    color:var(--ink-2);background:#fff;
+    border:1px solid var(--border);border-radius:999px;
+    padding:7px 13px;box-shadow:0 12px 26px -14px rgba(25,16,70,.35);
+    display:inline-flex;align-items:center;gap:7px;pointer-events:none;
+  }
+  .fx-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+  .fx-chip-1{left:-30px;top:34%}
+  .fx-chip-2{right:-22px;bottom:24%}
+  /* selo PageSpeed: o site nasce otimizado */
+  .fx-score{
+    right:-20px;bottom:-22px;
+    padding:8px;border-radius:50%;
+    box-shadow:0 16px 36px -14px rgba(25,16,70,.45);
+  }
+  .fx-score .ring{width:62px;height:62px}
+  .fx-score .ring > b{font-size:1.05rem}
+  .fx-score .bar{stroke-dashoffset:4.9}
+  @media (prefers-reduced-motion: no-preference){
+    .fx-chip-1{animation:bob 5.5s ease-in-out infinite}
+    .fx-chip-2{animation:bob 6.5s ease-in-out infinite reverse}
+    .fx-score{animation:bob 7.5s ease-in-out infinite}
+    .fx-score .bar{animation:ring97 1.6s cubic-bezier(.2,.7,.2,1) 1.2s both}
+  }
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes ring97{from{stroke-dashoffset:163.4}to{stroke-dashoffset:4.9}}
+
+  /* selo flutuante ao lado do builder */
+  .builder-wrap{position:relative}
+  .builder-tag{
+    position:absolute;top:-16px;right:-10px;z-index:2;
+    font-family:var(--font-mono);font-size:.7rem;font-weight:600;
+    color:var(--violet-deep);background:#fff;
+    border:1px solid var(--border);border-radius:999px;
+    padding:8px 14px;box-shadow:0 10px 24px -12px rgba(25,16,70,.3);
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .builder-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+
+  /* ============ MÉTRICAS ============ */
+  .metrics{padding:30px 0 0}
+  .metrics-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    background:var(--surface);
+    border:1px solid var(--border);border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .metric{padding:26px 28px;border-left:1px solid var(--border)}
+  .metric:first-child{border-left:none}
+  .metric b{font-family:var(--font-display);font-weight:800;font-size:1.8rem;display:block;color:var(--ink)}
+  .metric span{font-size:.86rem;color:var(--muted)}
+  .metric b .accent{color:var(--violet)}
+  .metric b .num{font-size:1em;color:var(--ink)}
+
+  /* marquee de nichos */
+  .marquee{
+    overflow:hidden;margin-top:48px;
+    mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+  }
+  .marquee-track{display:flex;width:max-content}
+  .marquee-track span{
+    font-family:var(--font-mono);font-size:.78rem;color:var(--muted);
+    white-space:nowrap;padding-right:52px;
+  }
+  .marquee-track b{color:var(--violet);font-weight:600}
+  @media (prefers-reduced-motion: no-preference){
+    .marquee-track{animation:marq 32s linear infinite}
+  }
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* ============ SEÇÕES ============ */
+  .section{padding:96px 0 8px}
+  .section-head{max-width:660px;margin-bottom:52px}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .section-head.center .eyebrow{justify-content:center}
+  .section-head .lead{margin-top:14px}
+  .section-head.split{
+    max-width:none;display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:20px;
+  }
+  .section-head.split > div{max-width:620px}
+  .link-arrow{font-family:var(--font-display);font-weight:700;font-size:.98rem;white-space:nowrap}
+  .link-arrow::after{content:" →";transition:margin .15s ease}
+  .link-arrow:hover::after{margin-left:4px}
+
+  /* ============ COMO FUNCIONA ============ */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;counter-reset:step}
+  .step{
+    position:relative;padding:34px 30px 34px 0;margin-right:30px;
+    counter-increment:step;
+  }
+  .step::before{
+    content:counter(step,decimal-leading-zero);
+    font-family:var(--font-mono);font-weight:600;font-size:.8rem;
+    color:var(--violet);letter-spacing:.08em;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:46px;height:46px;border-radius:13px;
+    background:var(--violet-soft);border:1px solid #E0D4FA;
+    margin-bottom:20px;
+  }
+  .step::after{
+    content:"";position:absolute;top:57px;left:58px;right:8px;height:2px;
+    background:repeating-linear-gradient(90deg,var(--border) 0 8px,transparent 8px 16px);
+  }
+  .step:last-child::after{display:none}
+  .step h3{margin-bottom:10px}
+  .step p{font-size:.97rem;color:var(--muted)}
+
+  /* ============ RECURSOS ============ */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .feature{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px 26px;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .feature:hover{transform:translateY(-4px);border-color:#D9CCF7;box-shadow:0 22px 44px -26px rgba(109,40,217,.35)}
+  .feature-icon{
+    width:46px;height:46px;border-radius:13px;margin-bottom:18px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--violet-soft);color:var(--violet);
+    transition:background .25s ease,color .25s ease,transform .25s ease;
+  }
+  .feature-icon svg{width:22px;height:22px}
+  .feature:hover .feature-icon{background:var(--violet);color:#fff;transform:scale(1.06) rotate(-3deg)}
+  .feature h3{font-size:1.12rem;margin-bottom:8px}
+  .feature p{font-size:.94rem;color:var(--muted)}
+
+  /* ============ EDITOR DEMO ============ */
+  .editor-band{
+    border-radius:24px;overflow:hidden;
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    display:grid;grid-template-columns:.92fr 1.08fr;
+    margin-top:64px;
+  }
+  .editor-band > *{min-width:0}
+  .editor-copy{padding:58px 52px}
+  .editor-copy .eyebrow{color:var(--violet-bright)}
+  .editor-copy .eyebrow::before{background:var(--violet-bright)}
+  .editor-copy h2{color:#fff}
+  .editor-copy .lead{color:#B7AFDC;margin:16px 0 28px}
+  .editor-copy ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .editor-copy li{display:flex;gap:12px;align-items:flex-start;font-size:.97rem;color:#D6CFF2;font-weight:500}
+  .editor-copy li .tick{color:#5EE6B0;font-weight:800;flex-shrink:0}
+  .editor-shot{padding:44px 44px 44px 0;display:flex;align-items:center}
+  .editor-app{
+    width:100%;border-radius:16px;overflow:hidden;
+    background:#0F0A2C;border:1px solid var(--panel-border);
+    box-shadow:0 32px 70px -32px rgba(0,0,0,.65);
+    display:flex;min-height:330px;
+  }
+  .chat-pane{
+    width:220px;flex-shrink:0;border-right:1px solid var(--panel-border);
+    padding:16px;display:flex;flex-direction:column;gap:11px;background:#141040;
+  }
+  .chat-pane .label{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#7A72A8;margin-bottom:2px}
+  .msg{max-width:92%;padding:9px 12px;font-size:.76rem;line-height:1.45;border-radius:12px}
+  .msg-user{align-self:flex-end;background:var(--violet);color:#fff;border-bottom-right-radius:4px}
+  .msg-ai{align-self:flex-start;background:#221B52;color:#CFC8EE;border-bottom-left-radius:4px}
+  .chat-input{
+    margin-top:auto;padding:9px 12px;border-radius:10px;
+    border:1px solid rgba(255,255,255,.12);background:#0F0A2C;
+    font-family:var(--font-mono);font-size:.7rem;color:#7A72A8;
+  }
+  .preview-pane{flex:1;padding:12px 16px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+  .pv-toolbar{display:flex;justify-content:center;gap:12px;padding:2px 0 4px}
+  .pv-dev{color:#fff;opacity:.3;display:inline-flex}
+  .pv-dev svg{width:15px;height:15px}
+  .pv-dev.pv-d1{opacity:1}
+  .pv-inner{width:100%;margin:0 auto;display:flex;flex-direction:column;gap:12px;flex:1}
+  .chat-gen{
+    display:flex;align-items:center;gap:6px;
+    font-family:var(--font-mono);font-size:.6rem;color:#7A72A8;
+  }
+  .chat-gen i{width:6px;height:6px;border-radius:50%;background:#34D399;font-style:normal}
+  .chat-gen u{text-decoration:none;color:#A99EE0}
+  @media (prefers-reduced-motion: no-preference){
+    .pv-dev.pv-d1{animation:dev1 12s ease infinite}
+    .pv-dev.pv-d2{animation:dev2 12s ease infinite}
+    .pv-dev.pv-d3{animation:dev3 12s ease infinite}
+    .pv-inner{animation:pv-w 12s ease infinite}
+    .chat-gen{animation:chat-gen 12s ease infinite}
+  }
+  @keyframes dev1{0%,60%{opacity:1}68%,96%{opacity:.3}100%{opacity:1}}
+  @keyframes dev2{0%,62%{opacity:.3}68%,78%{opacity:1}84%,100%{opacity:.3}}
+  @keyframes dev3{0%,80%{opacity:.3}86%,96%{opacity:1}100%{opacity:.3}}
+  @keyframes pv-w{0%,60%{width:100%}68%,78%{width:74%}86%,94%{width:52%}100%{width:100%}}
+  @keyframes chat-gen{0%,36%{opacity:0}42%,100%{opacity:1}}
+  .preview-hero{
+    height:86px;border-radius:10px;flex-shrink:0;
+    background:linear-gradient(120deg,#2A1A5E,#171040);
+    border:1px dashed rgba(139,92,246,.5);
+    display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+  }
+  .preview-hero .lines{display:flex;flex-direction:column;gap:6px}
+  .preview-hero .lines i{display:block;width:120px;height:9px;border-radius:5px;background:rgba(255,255,255,.72)}
+  .preview-hero .lines i+i{width:82px;height:6px;background:rgba(255,255,255,.32)}
+  .preview-hero .pill{width:78px;height:26px;border-radius:8px;background:var(--violet)}
+
+  /* loop "ao vivo": o comando escurece o topo e cria o botão */
+  @media (prefers-reduced-motion: no-preference){
+    .msg-user{animation:msg-user 12s ease infinite}
+    .msg-ai{animation:msg-ai 12s ease infinite}
+    .preview-hero{animation:hero-dark 12s ease infinite}
+    .preview-hero .pill{animation:pill-pop 12s ease infinite}
+  }
+  @keyframes msg-user{0%,4%{opacity:0;transform:translateY(8px)}11%,100%{opacity:1;transform:none}}
+  @keyframes msg-ai{0%,26%{opacity:0;transform:translateY(8px)}33%,100%{opacity:1;transform:none}}
+  @keyframes hero-dark{0%,30%{filter:brightness(1.6) saturate(.75)}44%,100%{filter:none}}
+  @keyframes pill-pop{0%,36%{opacity:0;transform:scale(.5)}46%,100%{opacity:1;transform:scale(1)}}
+  .preview-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1}
+  .preview-cards div{
+    border-radius:10px;
+    background:linear-gradient(160deg,rgba(139,92,246,.13),rgba(139,92,246,.04));
+    border:1px solid rgba(139,92,246,.16);
+  }
+  .preview-footer{
+    height:40px;border-radius:10px;background:#141040;flex-shrink:0;
+    display:flex;align-items:center;padding:0 14px;
+    font-family:var(--font-mono);font-size:.64rem;color:#6D659C;
+    overflow:hidden;white-space:nowrap;
+  }
+
+  /* ============ MODELOS ============ */
+  .templates{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .template{
+    border-radius:var(--radius);overflow:hidden;
+    background:var(--surface);border:1px solid var(--border);
+    transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .template:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(25,16,70,.3)}
+  .template-shot{
+    height:150px;position:relative;padding:16px;
+    display:flex;flex-direction:column;gap:7px;justify-content:center;
+    transition:transform .35s ease;transform-origin:center;
+  }
+  .template:hover .template-shot{transform:scale(1.05)}
+  .template-shot .l1{width:58%;height:10px;border-radius:5px;background:rgba(255,255,255,.9)}
+  .template-shot .l2{width:76%;height:7px;border-radius:4px;background:rgba(255,255,255,.45)}
+  .template-shot .l3{width:74px;height:20px;border-radius:6px;background:#fff;margin-top:5px}
+  .template-shot .chips{display:flex;gap:6px;margin-top:10px}
+  .template-shot .chips i{width:34px;height:22px;border-radius:6px;background:rgba(255,255,255,.22)}
+  .t-cafe{background:linear-gradient(140deg,#B45309,#7C2D12)}
+  .t-studio{background:linear-gradient(140deg,#6D28D9,#3B0764)}
+  .t-store{background:linear-gradient(140deg,#0F766E,#134E4A)}
+  .t-consult{background:linear-gradient(140deg,#1D4ED8,#1E1B4B)}
+  .template-meta{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .template-meta b{font-family:var(--font-display);font-weight:700;font-size:1rem;display:block}
+  .template-meta span{font-size:.8rem;color:var(--muted)}
+  .template-meta .cat{
+    font-family:var(--font-mono);font-size:.64rem;letter-spacing:.06em;
+    color:var(--violet-deep);background:var(--violet-soft);
+    padding:5px 9px;border-radius:999px;white-space:nowrap;
+  }
+
+  /* ============ PAINEL ============ */
+  .dash-band{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:center}
+  .dash-band > *{min-width:0}
+  .dash-copy ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:26px}
+  .dash-copy li{display:flex;gap:12px;align-items:flex-start;font-size:.97rem;color:var(--ink-2);font-weight:500}
+  .dash-copy li .tick{color:var(--green);font-weight:800;flex-shrink:0}
+
+  .dash{
+    border-radius:18px;overflow:hidden;
+    background:var(--surface);border:1px solid var(--border);
+    box-shadow:0 44px 84px -42px rgba(25,16,70,.4);
+  }
+  .dash-topbar{
+    display:flex;align-items:center;gap:7px;
+    padding:12px 16px;border-bottom:1px solid var(--border);background:#FCFBFF;
+  }
+  .dash-topbar i{width:10px;height:10px;border-radius:50%;display:block}
+  .dash-topbar i:nth-child(1){background:#FF5F57}
+  .dash-topbar i:nth-child(2){background:#FEBC2E}
+  .dash-topbar i:nth-child(3){background:#28C840}
+  .dash-topbar .url{margin-left:10px;font-family:var(--font-mono);font-size:.68rem;color:var(--muted)}
+  .dash-body{display:flex;min-height:300px}
+  .dash-side{
+    width:158px;flex-shrink:0;border-right:1px solid var(--border);
+    padding:14px 12px;display:flex;flex-direction:column;gap:5px;background:#FCFBFF;
+  }
+  .dash-brand{
+    display:flex;align-items:center;gap:7px;
+    font-family:var(--font-display);font-weight:900;font-size:.66rem;letter-spacing:.08em;
+    color:var(--ink);margin-bottom:10px;
+  }
+  .dash-brand i{
+    width:18px;height:18px;border-radius:5px;background:var(--ink);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:.58rem;font-style:normal;
+  }
+  .dash-item{
+    font-size:.7rem;font-weight:600;color:var(--muted);
+    padding:7px 9px;border-radius:8px;
+  }
+  .dash-item.active{background:var(--violet-soft);color:var(--violet-deep)}
+  .dash-credits{
+    margin-top:auto;border-radius:10px;padding:11px 12px;color:#fff;
+    background:linear-gradient(135deg,#2A1760,#4C1D95);
+  }
+  .dash-credits small{
+    display:block;font-family:var(--font-mono);font-size:.52rem;
+    letter-spacing:.12em;text-transform:uppercase;color:#C9B8F5;margin-bottom:3px;
+  }
+  .dash-credits b{font-family:var(--font-mono);font-size:.78rem;font-weight:600;white-space:nowrap}
+  .dash-main{flex:1;padding:16px;min-width:0}
+  .dash-main h4{font-family:var(--font-display);font-weight:900;font-size:1rem;color:var(--ink)}
+  .dash-sub{font-family:var(--font-mono);font-size:.6rem;color:var(--muted);margin:3px 0 14px}
+  .dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+  .dash-stat{border:1px solid var(--border);border-radius:10px;padding:10px 11px;background:var(--surface)}
+  .dash-stat b{font-family:var(--font-display);font-weight:900;font-size:1.15rem;color:var(--ink);display:block}
+  .dash-stat span{font-size:.58rem;color:var(--muted)}
+  .dash-page{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .dash-thumb{
+    height:84px;background:linear-gradient(120deg,#FFF6E3,#FFE9C2);
+    display:flex;flex-direction:column;justify-content:center;gap:6px;padding:14px;
+  }
+  .dash-thumb i{display:block;border-radius:4px}
+  .dash-thumb i:nth-child(1){width:56%;height:9px;background:var(--ink-2)}
+  .dash-thumb i:nth-child(2){width:74%;height:6px;background:rgba(43,33,88,.35)}
+  .dash-thumb i:nth-child(3){width:78px;height:18px;border-radius:6px;background:#F2A93B;margin-top:4px}
+  .dash-page-meta{display:flex;align-items:center;gap:9px;padding:10px 12px}
+  .dash-page-meta > b{font-size:.74rem;color:var(--ink)}
+  .pill-live{
+    display:inline-flex;align-items:center;gap:5px;
+    font-family:var(--font-mono);font-size:.56rem;font-weight:600;
+    color:var(--green);background:var(--green-soft);
+    padding:3px 8px;border-radius:999px;white-space:nowrap;
+  }
+  .pill-live .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .ring-wrap{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .ring-wrap small{font-family:var(--font-mono);font-size:.52rem;line-height:1.5;color:var(--muted);text-align:right}
+  .ring{position:relative;width:44px;height:44px;flex-shrink:0}
+  .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring circle{fill:none;stroke-width:5.5}
+  .ring .track{stroke:var(--border)}
+  .ring .bar{stroke:var(--green);stroke-linecap:round;stroke-dasharray:163.4;stroke-dashoffset:11.4}
+  .ring > b{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-weight:900;font-size:.72rem;color:var(--green);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .dash .bar{stroke-dashoffset:163.4;transition:stroke-dashoffset 1.8s cubic-bezier(.2,.7,.2,1) .5s}
+    .reveal.is-in .bar{stroke-dashoffset:11.4}
+    .pill-live .dot{animation:pulse-dot 2.2s ease infinite}
+  }
+  @keyframes pulse-dot{
+    0%,100%{box-shadow:0 0 0 0 rgba(14,159,110,.35)}
+    50%{box-shadow:0 0 0 5px rgba(14,159,110,0)}
+  }
+
+  /* ============ DEPOIMENTOS ============ */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .quote{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px 26px;display:flex;flex-direction:column;gap:18px;
+  }
+  .quote p{font-size:.97rem;color:var(--ink-2);line-height:1.65}
+  .quote p::before{content:"“";font-family:var(--font-display);font-size:1.6rem;color:var(--violet-bright);line-height:0;margin-right:2px}
+  .quote-who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  .avatar{
+    width:42px;height:42px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-weight:700;font-size:.85rem;color:#fff;
+    background:linear-gradient(135deg,var(--violet),var(--violet-bright));
+  }
+  .quote-who b{font-size:.9rem;display:block;line-height:1.3}
+  .quote-who span{font-size:.8rem;color:var(--muted)}
+
+  /* ============ PLANOS ============ */
+  .toggle-row{display:flex;justify-content:center;margin-bottom:44px}
+  .toggle{
+    display:inline-flex;gap:4px;padding:5px;border-radius:13px;
+    background:var(--surface);border:1.5px solid var(--border);
+  }
+  .toggle button{
+    font-family:var(--font-display);font-weight:700;font-size:.9rem;
+    padding:10px 22px;border-radius:9px;border:none;cursor:pointer;
+    background:transparent;color:var(--muted);
+    transition:background .18s ease,color .18s ease;
+  }
+  .toggle button.is-active{background:var(--violet);color:#fff}
+  .toggle button .save{
+    font-family:var(--font-mono);font-size:.66rem;font-weight:600;
+    background:var(--green-soft);color:var(--green);
+    padding:3px 7px;border-radius:999px;margin-left:6px;
+  }
+  .toggle button.is-active .save{background:rgba(255,255,255,.2);color:#fff}
+
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  .plan{
+    position:relative;display:flex;flex-direction:column;
+    background:var(--surface);border:1.5px solid var(--border);border-radius:20px;
+    padding:34px 30px;
+  }
+  .plan-hot{
+    border-color:var(--violet);
+    box-shadow:0 32px 64px -32px rgba(109,40,217,.45);
+    background:linear-gradient(180deg,#FDFCFF,var(--violet-soft));
+    z-index:1;
+  }
+  /* feixe de luz girando na borda do plano em destaque */
+  @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+  .plan-hot::before{
+    content:"";position:absolute;inset:-3px;border-radius:23px;z-index:-1;
+    background:conic-gradient(from var(--ang),transparent 0deg,var(--violet-bright) 40deg,#5EE6B0 70deg,transparent 110deg);
+    filter:blur(5px);opacity:0;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .plan-hot::before{opacity:.8;animation:spin-border 5s linear infinite}
+  }
+  @keyframes spin-border{to{--ang:360deg}}
+  .plan-flag{
+    position:absolute;top:-13px;left:30px;
+    font-family:var(--font-mono);font-size:.66rem;font-weight:600;letter-spacing:.1em;
+    padding:6px 13px;border-radius:999px;color:#fff;background:var(--violet);
+  }
+  .plan-name{font-family:var(--font-display);font-weight:800;font-size:1.3rem}
+  .plan-tag{font-size:.88rem;color:var(--muted);margin:6px 0 24px;min-height:42px}
+  .plan-price{display:flex;align-items:baseline;gap:6px}
+  .plan-price .cur{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--muted)}
+  .plan-price .val{font-family:var(--font-display);font-weight:800;font-size:3rem;letter-spacing:-.02em}
+  .plan-price .per{font-size:.88rem;color:var(--muted)}
+  .plan-note{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);margin:6px 0 24px;min-height:17px}
+  .plan .btn{width:100%}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:26px}
+  .plan li{display:flex;gap:11px;align-items:flex-start;font-size:.92rem;color:var(--ink-2)}
+  .plan li .tick{color:var(--green);font-weight:800;flex-shrink:0}
+
+  /* ============ TURBOCLOUD ============ */
+  .cloud-band{
+    border-radius:24px;padding:56px 52px;
+    background:linear-gradient(120deg,var(--panel),#2A1760);
+    border:1px solid var(--panel-border);
+    display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;
+    margin-top:64px;
+  }
+  .cloud-band .eyebrow{color:var(--violet-bright)}
+  .cloud-band .eyebrow::before{background:var(--violet-bright)}
+  .cloud-band h2{color:#fff}
+  .cloud-band .lead{color:#C3BBE6;margin-top:16px}
+  .cloud-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cloud-stat{
+    padding:22px;border-radius:14px;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  }
+  .cloud-stat b{font-family:var(--font-display);font-weight:800;font-size:1.5rem;color:#fff;display:block}
+  .cloud-stat span{font-size:.82rem;color:#AFA7D6}
+
+  /* ============ FAQ ============ */
+  .faq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  .faq{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    overflow:hidden;transition:border-color .2s ease;
+  }
+  .faq[data-open="true"]{border-color:#D9CCF7}
+  .faq-q{
+    width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:20px 24px;background:transparent;border:none;cursor:pointer;text-align:left;
+    font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--ink);
+  }
+  .faq-q .sign{
+    width:28px;height:28px;border-radius:9px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--violet-soft);color:var(--violet);
+    font-size:1.15rem;font-weight:500;line-height:1;
+    transition:transform .25s ease;
+  }
+  .faq[data-open="true"] .faq-q .sign{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .faq-a p{padding:0 24px 22px;font-size:.95rem;color:var(--muted);max-width:660px}
+
+  /* ============ CTA FINAL ============ */
+  .final{padding:96px 0 100px}
+  .final-card{
+    position:relative;border-radius:26px;padding:72px 40px;text-align:center;overflow:hidden;
+    background:var(--panel);border:1px solid var(--panel-border);
+  }
+  .final-card::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(560px 260px at 50% -10%,rgba(139,92,246,.35),transparent),
+      radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.4px);
+    background-size:auto,26px 26px;
+  }
+  .final-card h2{color:#fff;position:relative;max-width:640px;margin:0 auto 18px}
+  .final-card .lead{color:#C3BBE6;max-width:480px;margin:0 auto 34px;position:relative}
+  .final-card .btn{position:relative}
+  .final-prompt{
+    position:relative;
+    font-family:var(--font-mono);font-size:.78rem;color:#9A92C4;
+    margin-top:26px;
+  }
+  .final-prompt b{color:#5EE6B0;font-weight:500}
+  .final-prompt .caret{
+    display:inline-block;width:8px;height:1em;margin:0 2px;vertical-align:text-bottom;
+    background:var(--violet-bright);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .final-prompt .caret{animation:blink 1s steps(2) infinite}
+  }
+  @keyframes blink{50%{opacity:0}}
+
+  /* ============ FOOTER ============ */
+  footer{border-top:1px solid var(--border);background:var(--surface)}
+  .footer-grid{
+    display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;
+    padding:56px 0 44px;
+  }
+  .footer-grid img{height:40px;width:auto;margin-bottom:16px}
+  .footer-grid p{font-size:.9rem;color:var(--muted);max-width:280px}
+  .footer-col b{font-family:var(--font-display);font-weight:700;font-size:.92rem;display:block;margin-bottom:16px}
+  .footer-col a{display:block;font-size:.9rem;color:var(--muted);padding:5px 0}
+  .footer-col a:hover{color:var(--violet)}
+  .footer-base{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    padding:20px 0 26px;border-top:1px solid var(--border);
+    font-size:.82rem;color:var(--muted);
+  }
+  .footer-base .made{font-family:var(--font-mono);font-size:.74rem}
+
+  /* ============ REVEAL ON SCROLL ============ */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.is-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ============ RESPONSIVO ============ */
+  @media (max-width:1020px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .builder-wrap{order:-1}
+    .hero p.lead{max-width:none}
+    .metrics-grid{grid-template-columns:1fr 1fr}
+    .metric{border-left:none;border-top:1px solid var(--border)}
+    .metric:nth-child(-n+2){border-top:none}
+    .metric:nth-child(even){border-left:1px solid var(--border)}
+    .steps{grid-template-columns:1fr;gap:8px}
+    .step{margin-right:0;padding:26px 0}
+    .step::after{display:none}
+    .features{grid-template-columns:1fr 1fr}
+    .editor-band{grid-template-columns:1fr}
+    .editor-shot{padding:0 40px 44px}
+    .templates{grid-template-columns:1fr 1fr}
+    .dash-band{grid-template-columns:1fr;gap:40px}
+    .quotes{grid-template-columns:1fr}
+    .plans{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+    .plan-tag{min-height:0}
+    .cloud-band{grid-template-columns:1fr;padding:44px 32px}
+    .footer-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:760px){
+    .nav-links{display:none}
+    .nav-actions .login{display:none}
+    .nav-burger{display:flex}
+    .nav-inner{gap:12px;padding:10px 16px}
+    /* largura controlada + height auto = sem distorção */
+    .nav-logo img{width:min(34vw,140px);height:auto}
+    .nav-actions{gap:10px}
+    .nav-actions .btn-sm{padding:10px 14px;font-size:.85rem}
+    .hero{padding:56px 0 40px}
+    .section{padding:72px 0 8px}
+    .features{grid-template-columns:1fr}
+    .templates{grid-template-columns:1fr}
+    .editor-copy{padding:40px 28px}
+    .editor-shot{padding:0 20px 28px}
+    .chat-pane{width:170px}
+    .metrics-grid{grid-template-columns:1fr 1fr}
+    .builder-tag{right:8px}
+    .hero-ctas{flex-direction:column}
+    .hero-ctas .btn{width:100%}
+    /* arte do hero mais compacta no mobile (~30% menor) */
+    .builder-body{padding:12px 14px 14px}
+    .prompt-box{padding:9px 12px;margin-bottom:12px}
+    .canvas-hero{height:64px;padding:12px;gap:6px}
+    .canvas-cards{padding:10px;gap:8px}
+    .canvas-cards .cell{height:44px;padding:7px}
+    .builder-status{margin-top:10px;min-height:18px}
+    .status-line{font-size:.64rem}
+    .fx-chip{display:none}
+    .fx-chip.fx-score{display:inline-flex;right:-6px;bottom:-18px}
+    .dash-side{display:none}
+    .ring-wrap small{display:none}
+    /* sem espaço para o typewriter: mostra a frase completa, com quebra */
+    .prompt-text{animation:none !important;width:auto !important;white-space:normal;border-right:none}
+    .final-card{padding:56px 24px}
+    .footer-grid{grid-template-columns:1fr;gap:32px}
+  }
+  @media (max-width:510px){
+    /* editor demo: chat empilhado sobre o preview */
+    .editor-app{flex-direction:column;min-height:0}
+    .chat-pane{width:100%;border-right:none;border-bottom:1px solid var(--panel-border)}
+    .chat-input{margin-top:4px}
+    .editor-shot{padding:0 16px 20px}
+    .editor-copy{padding:32px 20px}
+    .preview-pane{padding:10px 12px 14px}
+    .preview-footer{font-size:.56rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#topo" class="nav-logo" aria-label="TurboPages, voltar ao início">
+      <img src="assets/turbopages-logo-nav.png" alt="TurboPages">
+    </a>
+    <div class="nav-links">
+      <a href="#como">Como funciona</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#modelos">Modelos</a>
+      <a href="#painel">Painel</a>
+      <a href="#planos">Planos</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#planos" class="login">Entrar</a>
+      <a href="#planos" class="btn btn-primary btn-sm">Criar meu site</a>
+      <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="#como">Como funciona</a>
+    <a href="#recursos">Recursos</a>
+    <a href="#modelos">Modelos</a>
+    <a href="#painel">Painel</a>
+    <a href="#planos">Planos</a>
+    <a href="#faq">FAQ</a>
+    <a href="#planos"><strong>Entrar</strong></a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="topo">
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-badge"><span class="dot"></span>powered by TurboCloud · hospedagem inclusa</div>
+      <h1>Seu site no ar em minutos.<br><em>Escrito por você, construído por IA.</em></h1>
+      <p class="lead">Descreva seu negócio em uma frase e o TurboPages cria o site completo, com textos, design e páginas, já publicado na hospedagem de alta performance da TurboCloud.</p>
+      <div class="hero-ctas">
+        <a href="#planos" class="btn btn-primary">Criar meu site agora</a>
+        <a href="#como" class="btn btn-ghost">Ver como funciona</a>
+      </div>
+      <div class="hero-proofs">
+        <span><span class="tick">✓</span> Sem cartão para começar</span>
+        <span><span class="tick">✓</span> SSL e CDN inclusos</span>
+        <span><span class="tick">✓</span> Domínio próprio</span>
+      </div>
+    </div>
+
+    <!-- Assinatura: o prompt digita, o site se monta, publica -->
+    <div class="builder-wrap">
+      <div class="builder-tag"><span class="dot"></span>ao vivo no editor</div>
+      <div class="fx-chip fx-chip-1" aria-hidden="true"><span class="dot"></span>SSL ativo</div>
+      <div class="fx-chip fx-chip-2" aria-hidden="true">⚡ CDN global</div>
+      <div class="fx-chip fx-score js-count" aria-hidden="true" title="PageSpeed do Google">
+        <span class="ring">
+          <svg viewBox="0 0 60 60">
+            <circle class="track" cx="30" cy="30" r="26"></circle>
+            <circle class="bar" cx="30" cy="30" r="26"></circle>
+          </svg>
+          <b class="num" data-target="97">97</b>
+        </span>
+      </div>
+      <div class="builder" data-tilt aria-label="Demonstração: a IA gera um site a partir de uma frase">
+        <div class="builder-bar">
+          <i></i><i></i><i></i>
+          <span class="url">
+            <span class="url-a">app.turbopages.com.br/editor</span>
+            <span class="url-b">🔒 cafeteria.turbopages.site</span>
+          </span>
+        </div>
+        <div class="builder-body">
+          <div class="prompt-box">
+            <span class="spark" aria-hidden="true">✦</span>
+            <span class="prompt-text">Crie um site para minha cafeteria com reservas</span>
+            <span class="prompt-send">Gerar</span>
+          </div>
+          <div class="canvas">
+            <div class="site-skeleton">
+              <div class="canvas-hero">
+                <span class="sk"></span><span class="sk"></span><span class="sk"></span>
+              </div>
+              <div class="canvas-cards">
+                <div class="cell"><b></b><u></u></div>
+                <div class="cell"><b></b><u></u></div>
+                <div class="cell"><b></b><u></u></div>
+              </div>
+            </div>
+            <div class="site-final" aria-hidden="true">
+              <div class="sf-hero">
+                <b>Café Aurora</b>
+                <span>Cafés especiais e brunch artesanal</span>
+                <i>Reservar mesa</i>
+              </div>
+              <div class="sf-cards">
+                <div><em>☕</em><b>Espresso</b><span>R$ 8</span></div>
+                <div><em>🥐</em><b>Croissant</b><span>R$ 12</span></div>
+                <div><em>🍰</em><b>Bolo do dia</b><span>R$ 14</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="builder-status">
+            <span class="status-line status-working"><span class="spin"></span>gerando páginas, textos e imagens…</span>
+            <span class="status-line status-live"><span class="dot"></span>publicado · cafeteria.turbopages.site · SSL + CDN ativos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MÉTRICAS ============ -->
+<section class="metrics">
+  <div class="wrap">
+    <div class="metrics-grid reveal js-count">
+      <div class="metric"><b><span class="num" data-target="3" data-prefix="~">~3</span> <span class="accent">min</span></b><span>do texto ao site publicado</span></div>
+      <div class="metric"><b><span class="num" data-target="99.9" data-decimals="1">99,9</span><span class="accent">%</span></b><span>de uptime pela TurboCloud</span></div>
+      <div class="metric"><b>0</b><span>linhas de código escritas por você</span></div>
+      <div class="metric"><b>CDN <span class="accent">global</span></b><span>carregamento em milissegundos</span></div>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span><b>sites para →</b> cafeterias · barbearias · clínicas · petshops · restaurantes · lojas online · estúdios · academias · advocacias · consultorias · imobiliárias · salões de beleza · </span><span><b>sites para →</b> cafeterias · barbearias · clínicas · petshops · restaurantes · lojas online · estúdios · academias · advocacias · consultorias · imobiliárias · salões de beleza · </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="section" id="como">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Como funciona</div>
+      <h2>Três passos entre a sua ideia e um site no ar</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <h3>Descreva seu negócio</h3>
+        <p>Conte em poucas frases o que você faz: nome, ramo, estilo. A IA entende o contexto e o público.</p>
+      </div>
+      <div class="step reveal">
+        <h3>A IA monta o site</h3>
+        <p>Textos, imagens, cores e páginas gerados na hora, sob medida. Ajuste qualquer detalhe pedindo em português.</p>
+      </div>
+      <div class="step reveal">
+        <h3>Publique na TurboCloud</h3>
+        <p>Um clique e o site vai ao ar na hospedagem de alta performance, com SSL, CDN e domínio configurados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECURSOS ============ -->
+<section class="section" id="recursos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Recursos</div>
+      <h2>Tudo que um pequeno negócio precisa, sem complicação</h2>
+    </div>
+    <div class="features">
+      <div class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/><path d="M19 15l.9 2.3L22 18l-2.1.7L19 21l-.9-2.3L16 18l2.1-.7L19 15z"/></svg>
+        </div>
+        <h3>Criação por IA</h3>
+        <p>Descreva e pronto: textos, layout e imagens gerados sob medida para o seu negócio, em português.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg>
+        </div>
+        <h3>Velocidade TurboCloud</h3>
+        <p>Hospedagem de alta performance embutida em todos os planos. Seu site carrega em milissegundos.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3"/><path d="M16 9l4 3-4 3"/><path d="M13 5l-2 14"/></svg>
+        </div>
+        <h3>Sem código</h3>
+        <p>Nada de HTML, plugins ou webdesigner. Você foca no negócio, a IA cuida do site.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        </div>
+        <h3>Domínio e SSL</h3>
+        <p>Conecte seu domínio próprio com certificado SSL grátis e automático, em poucos cliques.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+        </div>
+        <h3>Mobile e SEO</h3>
+        <p>Sites responsivos e otimizados para o Google automaticamente, em qualquer dispositivo.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 8.5H8L6 3H3"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+        </div>
+        <h3>Loja e reservas</h3>
+        <p>Adicione catálogo, pagamentos e agendamentos para vender e receber clientes direto no site.</p>
+      </div>
+    </div>
+
+    <!-- ============ EDITOR ============ -->
+    <div class="editor-band reveal">
+      <div class="editor-copy">
+        <div class="eyebrow">Editor com IA</div>
+        <h2>Edite qualquer coisa conversando</h2>
+        <p class="lead">"Deixe o topo mais escuro", "adicione depoimentos", "troque o botão por 'Reservar mesa'". A IA entende e aplica em segundos, e você mantém o controle total.</p>
+        <ul>
+          <li><span class="tick">✓</span> Comandos em português, do seu jeito</li>
+          <li><span class="tick">✓</span> Visualize em desktop, tablet e celular</li>
+          <li><span class="tick">✓</span> Não gostou? Restaure qualquer versão anterior</li>
+        </ul>
+      </div>
+      <div class="editor-shot">
+        <div class="editor-app" data-tilt aria-label="Demonstração do editor por conversa">
+          <div class="chat-pane">
+            <div class="label">Assistente IA</div>
+            <div class="msg msg-user">Deixe o topo mais escuro e adicione um botão de reservas</div>
+            <div class="msg msg-ai">Feito! Atualizei o topo e adicionei o botão "Reservar mesa". ✦</div>
+            <div class="chat-gen"><i></i>Página gerada · <u>↺ Restaurar</u></div>
+            <div class="chat-input">Peça uma alteração…</div>
+          </div>
+          <div class="preview-pane">
+            <div class="pv-toolbar" aria-hidden="true">
+              <span class="pv-dev pv-d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+              <span class="pv-dev pv-d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M11 18h2"/></svg></span>
+              <span class="pv-dev pv-d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="8" y="2.5" width="8" height="19" rx="2"/><path d="M11 18.5h2"/></svg></span>
+            </div>
+            <div class="pv-inner">
+              <div class="preview-hero">
+                <div class="lines"><i></i><i></i></div>
+                <div class="pill"></div>
+              </div>
+              <div class="preview-cards"><div></div><div></div></div>
+              <div class="preview-footer">rodapé · contato · redes sociais</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODELOS ============ -->
+<section class="section" id="modelos">
+  <div class="wrap">
+    <div class="section-head split reveal">
+      <div>
+        <div class="eyebrow">Modelos prontos</div>
+        <h2>Comece de um modelo ou deixe a IA criar do zero</h2>
+      </div>
+      <a href="#planos" class="link-arrow">Ver todos os modelos</a>
+    </div>
+    <div class="templates">
+      <div class="template reveal">
+        <div class="template-shot t-cafe" aria-hidden="true">
+          <span class="l1"></span><span class="l2"></span><span class="l3"></span>
+          <span class="chips"><i></i><i></i><i></i></span>
+        </div>
+        <div class="template-meta">
+          <div><b>Cafeteria</b><span>cardápio e reservas</span></div>
+          <span class="cat">alimentação</span>
+        </div>
+      </div>
+      <div class="template reveal">
+        <div class="template-shot t-studio" aria-hidden="true">
+          <span class="l1"></span><span class="l2"></span><span class="l3"></span>
+          <span class="chips"><i></i><i></i><i></i></span>
+        </div>
+        <div class="template-meta">
+          <div><b>Estúdio</b><span>portfólio e orçamentos</span></div>
+          <span class="cat">serviços</span>
+        </div>
+      </div>
+      <div class="template reveal">
+        <div class="template-shot t-store" aria-hidden="true">
+          <span class="l1"></span><span class="l2"></span><span class="l3"></span>
+          <span class="chips"><i></i><i></i><i></i></span>
+        </div>
+        <div class="template-meta">
+          <div><b>Loja online</b><span>catálogo e pagamentos</span></div>
+          <span class="cat">e-commerce</span>
+        </div>
+      </div>
+      <div class="template reveal">
+        <div class="template-shot t-consult" aria-hidden="true">
+          <span class="l1"></span><span class="l2"></span><span class="l3"></span>
+          <span class="chips"><i></i><i></i><i></i></span>
+        </div>
+        <div class="template-meta">
+          <div><b>Consultoria</b><span>serviços e agendamento</span></div>
+          <span class="cat">profissional</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAINEL ============ -->
+<section class="section" id="painel">
+  <div class="wrap">
+    <div class="dash-band reveal js-count">
+      <div class="dash" data-tilt aria-label="Demonstração do painel de controle do TurboPages">
+        <div class="dash-topbar">
+          <i></i><i></i><i></i>
+          <span class="url">app.turbopages.com.br/painel</span>
+        </div>
+        <div class="dash-body">
+          <div class="dash-side">
+            <div class="dash-brand"><i>T</i>TURBOPAGES</div>
+            <div class="dash-item active">Minhas Páginas</div>
+            <div class="dash-item">Modelos</div>
+            <div class="dash-item">Domínios</div>
+            <div class="dash-item">Análises</div>
+            <div class="dash-credits">
+              <small>Créditos de IA</small>
+              <b>⚡ <span class="num" data-target="291">291</span> créditos</b>
+            </div>
+          </div>
+          <div class="dash-main">
+            <h4>Minhas Páginas</h4>
+            <div class="dash-sub">2 páginas · 1 publicada · 1 em rascunho</div>
+            <div class="dash-stats">
+              <div class="dash-stat"><b>2</b><span>total de páginas</span></div>
+              <div class="dash-stat"><b>1</b><span>publicada</span></div>
+              <div class="dash-stat"><b>1</b><span>em rascunho</span></div>
+            </div>
+            <div class="dash-page">
+              <div class="dash-thumb" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="dash-page-meta">
+                <b>Pimpão Festas</b>
+                <span class="pill-live"><span class="dot"></span>Publicada</span>
+                <span class="ring-wrap">
+                  <small>PageSpeed<br>do Google</small>
+                  <span class="ring">
+                    <svg viewBox="0 0 60 60" aria-hidden="true">
+                      <circle class="track" cx="30" cy="30" r="26"></circle>
+                      <circle class="bar" cx="30" cy="30" r="26"></circle>
+                    </svg>
+                    <b class="num" data-target="93">93</b>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-copy">
+        <div class="eyebrow">Painel de controle</div>
+        <h2>Suas páginas, seus números, um só painel</h2>
+        <p class="lead" style="margin-top:14px;">Publique, acompanhe e edite tudo do mesmo lugar, sem plugins nem planilhas.</p>
+        <ul>
+          <li><span class="tick">✓</span> Status de cada página: publicada, rascunho e visitas</li>
+          <li><span class="tick">✓</span> Nota de performance do Google medida em cada página</li>
+          <li><span class="tick">✓</span> Domínios e análises integrados ao painel</li>
+          <li><span class="tick">✓</span> Créditos de IA: gere no modo econômico ou alta qualidade</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="section" id="depoimentos">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Quem já usa</div>
+      <h2>Negócios reais, sites no ar</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal">
+        <p>Descrevi minha cafeteria numa frase e em dez minutos o site estava no ar, com cardápio e tudo. Meus clientes reservam mesa direto por lá.</p>
+        <div class="quote-who">
+          <span class="avatar">MR</span>
+          <div><b>Mariana Rocha</b><span>Café Alameda · Curitiba</span></div>
+        </div>
+      </div>
+      <div class="quote reveal">
+        <p>Eu adiava o site havia dois anos porque não sabia por onde começar. Com o TurboPages resolvi num fim de tarde, e ficou mais bonito do que os orçamentos que recebi.</p>
+        <div class="quote-who">
+          <span class="avatar">DS</span>
+          <div><b>Diego Santana</b><span>Santana Marcenaria · Recife</span></div>
+        </div>
+      </div>
+      <div class="quote reveal">
+        <p>O que me convenceu foi a velocidade. O site carrega instantâneo no celular dos meus alunos, e o Google passou a me encontrar primeiro na região.</p>
+        <div class="quote-who">
+          <span class="avatar">LF</span>
+          <div><b>Luana Freitas</b><span>Studio LF Pilates · Goiânia</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANOS ============ -->
+<section class="section" id="planos">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Planos</div>
+      <h2>Escolha seu plano e comece a criar</h2>
+      <p class="lead">Todos os planos incluem hospedagem TurboCloud, SSL e CDN. Cancele quando quiser.</p>
+    </div>
+    <div class="toggle-row reveal">
+      <div class="toggle" role="group" aria-label="Período de cobrança">
+        <button type="button" id="btnMonthly">Mensal</button>
+        <button type="button" id="btnAnnual" class="is-active">Anual <span class="save">−20%</span></button>
+      </div>
+    </div>
+    <div class="plans">
+      <div class="plan reveal">
+        <div class="plan-name">Starter</div>
+        <p class="plan-tag">Para colocar seu primeiro site no ar.</p>
+        <div class="plan-price"><span class="cur">R$</span><span class="val" data-monthly="29">23</span><span class="per">/mês</span></div>
+        <div class="plan-note" data-note>Cobrado anualmente · economize 20%</div>
+        <a href="#" class="btn btn-ghost">Assinar Starter</a>
+        <ul>
+          <li><span class="tick">✓</span> 1 site criado por IA</li>
+          <li><span class="tick">✓</span> Subdomínio TurboPages grátis</li>
+          <li><span class="tick">✓</span> SSL e CDN inclusos</li>
+          <li><span class="tick">✓</span> Otimização mobile e SEO</li>
+        </ul>
+      </div>
+      <div class="plan plan-hot reveal">
+        <div class="plan-flag">MAIS POPULAR</div>
+        <div class="plan-name">Pro</div>
+        <p class="plan-tag">Para negócios que querem crescer e vender.</p>
+        <div class="plan-price"><span class="cur">R$</span><span class="val" data-monthly="59">47</span><span class="per">/mês</span></div>
+        <div class="plan-note" data-note>Cobrado anualmente · economize 20%</div>
+        <a href="#" class="btn btn-primary">Assinar Pro</a>
+        <ul>
+          <li><span class="tick">✓</span> 3 sites criados por IA</li>
+          <li><span class="tick">✓</span> Domínio próprio incluso</li>
+          <li><span class="tick">✓</span> Loja, pagamentos e reservas</li>
+          <li><span class="tick">✓</span> Edições ilimitadas por IA</li>
+          <li><span class="tick">✓</span> Suporte prioritário</li>
+        </ul>
+      </div>
+      <div class="plan reveal">
+        <div class="plan-name">Business</div>
+        <p class="plan-tag">Para agências e múltiplos projetos.</p>
+        <div class="plan-price"><span class="cur">R$</span><span class="val" data-monthly="119">95</span><span class="per">/mês</span></div>
+        <div class="plan-note" data-note>Cobrado anualmente · economize 20%</div>
+        <a href="#" class="btn btn-ghost">Assinar Business</a>
+        <ul>
+          <li><span class="tick">✓</span> Sites ilimitados</li>
+          <li><span class="tick">✓</span> CDN premium TurboCloud</li>
+          <li><span class="tick">✓</span> Colaboradores da equipe</li>
+          <li><span class="tick">✓</span> Analytics avançado</li>
+          <li><span class="tick">✓</span> Gerente de conta</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============ TURBOCLOUD ============ -->
+    <div class="cloud-band reveal">
+      <div>
+        <div class="eyebrow">Por dentro da TurboCloud</div>
+        <h2>A performance de quem já hospeda milhares de sites</h2>
+        <p class="lead">O TurboPages nasce dentro da TurboCloud, referência em hospedagem de alta performance. Seu site já vem com a infraestrutura que mantém tudo rápido e no ar, sem você configurar nada.</p>
+      </div>
+      <div class="cloud-stats">
+        <div class="cloud-stat"><b>CDN</b><span>global integrada</span></div>
+        <div class="cloud-stat"><b>SSL</b><span>grátis e automático</span></div>
+        <div class="cloud-stat"><b>Backups</b><span>diários inclusos</span></div>
+        <div class="cloud-stat"><b>99,9%</b><span>uptime garantido</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow">FAQ</div>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Preciso saber programar?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Não. Você descreve o que quer em português e a IA constrói tudo. Se quiser ajustar, é só pedir ou arrastar os elementos no editor visual.</p></div>
+      </div>
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          O site já vem hospedado?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Sim. Todos os planos incluem a hospedagem de alta performance da TurboCloud, com CDN global, SSL grátis e backups automáticos.</p></div>
+      </div>
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Posso usar meu próprio domínio?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Sim. Você conecta um domínio próprio em poucos cliques, ou usa um subdomínio grátis do TurboPages para começar.</p></div>
+      </div>
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Consigo mudar o site depois de publicado?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Sempre. Edite quando quiser conversando com a IA ou pelo editor visual. As alterações vão ao ar na hora.</p></div>
+      </div>
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Posso cancelar quando quiser?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Sim. Os planos são flexíveis e você pode cancelar a qualquer momento, sem multa ou fidelidade.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final">
+  <div class="wrap">
+    <div class="final-card reveal">
+      <h2>Seu próximo site começa com uma frase</h2>
+      <p class="lead">Descreva sua ideia e veja o TurboPages construir e publicar seu site em minutos.</p>
+      <a href="#planos" class="btn btn-primary">Criar meu site agora</a>
+      <div class="final-prompt">✦ "<span id="rotator">crie um site para minha barbearia</span>"<span class="caret"></span> <b>· publicado</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#topo" aria-label="TurboPages, voltar ao início"><img src="assets/turbopages-logo-nav.png" alt="TurboPages"></a>
+        <p>Sites criados por IA, rápidos e no ar em minutos. Um produto TurboCloud.</p>
+      </div>
+      <div class="footer-col">
+        <b>Produto</b>
+        <a href="#recursos">Recursos</a>
+        <a href="#modelos">Modelos</a>
+        <a href="#planos">Planos</a>
+        <a href="#como">Como funciona</a>
+      </div>
+      <div class="footer-col">
+        <b>Empresa</b>
+        <a href="#">Sobre a TurboCloud</a>
+        <a href="#">Hospedagem</a>
+        <a href="#">Blog</a>
+        <a href="#">Contato</a>
+      </div>
+      <div class="footer-col">
+        <b>Suporte</b>
+        <a href="#faq">Central de ajuda</a>
+        <a href="#">Status</a>
+        <a href="#">Termos</a>
+        <a href="#">Privacidade</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span id="year">2026</span> TurboPages · TurboCloud. Todos os direitos reservados.</span>
+      <span class="made">feito no Brasil 🇧🇷</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sombra da nav ao rolar
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Menu mobile
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+    })
+  );
+
+  // Mensal / Anual
+  const btnMonthly = document.getElementById('btnMonthly');
+  const btnAnnual = document.getElementById('btnAnnual');
+  function setBilling(annual) {
+    btnAnnual.classList.toggle('is-active', annual);
+    btnMonthly.classList.toggle('is-active', !annual);
+    document.querySelectorAll('.plan-price .val').forEach(el => {
+      const m = Number(el.dataset.monthly);
+      el.textContent = annual ? Math.round(m * 0.8) : m;
+    });
+    document.querySelectorAll('[data-note]').forEach(el => {
+      el.textContent = annual ? 'Cobrado anualmente · economize 20%' : 'Cobrado mensalmente';
+    });
+  }
+  btnMonthly.addEventListener('click', () => setBilling(false));
+  btnAnnual.addEventListener('click', () => setBilling(true));
+
+  // FAQ acordeão
+  document.querySelectorAll('.faq').forEach(faq => {
+    const q = faq.querySelector('.faq-q');
+    const a = faq.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const willOpen = faq.dataset.open !== 'true';
+      document.querySelectorAll('.faq[data-open="true"]').forEach(other => {
+        other.dataset.open = 'false';
+        other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        other.querySelector('.faq-a').style.maxHeight = '0px';
+      });
+      faq.dataset.open = String(willOpen);
+      q.setAttribute('aria-expanded', String(willOpen));
+      a.style.maxHeight = willOpen ? a.scrollHeight + 'px' : '0px';
+    });
+  });
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Revelar ao rolar, em cascata dentro de cada grade
+  document.querySelectorAll('.steps,.features,.templates,.quotes,.plans').forEach(grid => {
+    [...grid.children].forEach((el, i) => {
+      if (el.classList.contains('reveal')) el.style.transitionDelay = (i * 90) + 'ms';
+    });
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-in');
+        setTimeout(() => { e.target.style.transitionDelay = ''; }, 1400);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Barra de progresso de leitura
+  const progress = document.getElementById('progress');
+  const updateProgress = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    progress.style.transform = 'scaleX(' + (max > 0 ? doc.scrollTop / max : 0) + ')';
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // Contadores das métricas
+  function countUp(el) {
+    const target = parseFloat(el.dataset.target);
+    const decimals = Number(el.dataset.decimals || 0);
+    const prefix = el.dataset.prefix || '';
+    const start = performance.now(), duration = 1400;
+    (function frame(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + (target * eased).toFixed(decimals).replace('.', ',');
+      if (p < 1) requestAnimationFrame(frame);
+    })(start);
+  }
+  if (!reducedMotion) {
+    const ioNum = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.num').forEach(countUp);
+          ioNum.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.js-count').forEach(el => ioNum.observe(el));
+  }
+
+  // Tilt 3D nas janelas de app (somente mouse)
+  if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+      card.addEventListener('mousemove', ev => {
+        const r = card.getBoundingClientRect();
+        const x = (ev.clientX - r.left) / r.width - .5;
+        const y = (ev.clientY - r.top) / r.height - .5;
+        card.style.transform = 'perspective(900px) rotateY(' + (x * 6).toFixed(2) + 'deg) rotateX(' + (-y * 6).toFixed(2) + 'deg)';
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  }
+
+  // Typewriter rotativo do CTA final
+  const rotator = document.getElementById('rotator');
+  const phrases = [
+    'crie um site para minha barbearia',
+    'crie uma loja online para meus doces',
+    'crie um site para minha clínica',
+    'crie um site para meu restaurante'
+  ];
+  if (rotator && !reducedMotion) {
+    let pi = 0, ci = phrases[0].length, deleting = true;
+    setTimeout(function tick() {
+      const phrase = phrases[pi];
+      rotator.textContent = phrase.slice(0, ci);
+      let delay = deleting ? 30 : 65;
+      if (!deleting && ci === phrase.length) { delay = 2200; deleting = true; }
+      else if (deleting && ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; delay = 400; }
+      else { ci += deleting ? -1 : 1; }
+      setTimeout(tick, delay);
+    }, 2600);
+  }
+
+  // Ano corrente
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
