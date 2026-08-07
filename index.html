@@ -458,15 +458,74 @@
   .metric b .accent{color:var(--violet)}
   .metric b .num{font-size:1em;color:var(--ink)}
 
-  /* faixa de nichos */
-  .niches{
-    margin:0 0 60px;display:flex;flex-wrap:wrap;align-items:baseline;
-    gap:8px 0;font-size:.95rem;font-weight:600;
+  /* ============ FEITO PARA TODOS OS NEGÓCIOS ============ */
+  .audience{margin:0 0 88px;text-align:center}
+  .aud-badge{
+    display:inline-flex;align-items:center;gap:9px;
+    font-weight:700;font-size:.95rem;color:var(--violet);
+    background:var(--violet-soft);border:1px solid #E0D4FA;
+    padding:10px 20px;border-radius:999px;
   }
-  .niches > b{color:var(--ink);font-weight:800;margin-right:20px}
-  .niches span{color:#6E5BA6}
-  .niches span + span::before{content:"·";margin:0 13px;color:#C9C2E4}
-  .niches .more{color:var(--muted);font-weight:500}
+  .aud-badge svg{width:17px;height:17px;flex-shrink:0}
+  .audience h2{margin:24px 0 16px}
+  .audience > .lead{max-width:640px;margin:0 auto}
+  .aud-bar{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    background:var(--surface);border:1px solid var(--border);border-radius:18px;
+    margin:38px 0 30px;text-align:left;
+    box-shadow:0 16px 40px -30px rgba(25,16,70,.3);
+  }
+  .aud-item{display:flex;gap:15px;align-items:center;padding:24px 26px;border-left:1px solid var(--border)}
+  .aud-item:first-child{border-left:none}
+  .aud-ico{
+    width:56px;height:56px;border-radius:16px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .aud-ico svg{width:26px;height:26px}
+  .ai-violet{background:var(--violet-soft);color:var(--violet)}
+  .ai-green{background:#D9F5E8;color:#0E9F6E}
+  .ai-amber{background:#FEF3C7;color:#F59E0B}
+  .aud-item small{display:block;font-size:.82rem;color:var(--muted);line-height:1.4}
+  .aud-item b{font-family:var(--font-display);font-weight:900;font-size:1.05rem;color:var(--ink);display:block;line-height:1.3}
+  .aud-item .cap{font-size:.78rem;color:var(--muted)}
+  .aud-card{
+    border-radius:24px;border:1.5px solid #E4DBF8;
+    background:linear-gradient(180deg,#F8F5FE,#F1EBFD);
+    padding:36px 32px 34px;text-align:left;
+  }
+  .aud-head{display:flex;gap:16px;align-items:center;margin-bottom:30px}
+  .aud-target{
+    width:56px;height:56px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 26px -10px rgba(109,40,217,.6);
+  }
+  .aud-target svg{width:26px;height:26px}
+  .aud-head b{color:var(--violet);font-family:var(--font-display);font-weight:900;font-size:1.25rem;display:block}
+  .aud-head span{color:var(--ink-2);font-size:.95rem}
+  .aud-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:8px;row-gap:24px}
+  .aud-niche{display:flex;flex-direction:column;align-items:center;gap:10px;width:96px;text-align:center}
+  .aud-niche i{
+    width:58px;height:58px;border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 22px -14px rgba(25,16,70,.25);
+  }
+  .aud-niche i svg{width:26px;height:26px}
+  .aud-niche span{font-size:.8rem;font-weight:600;color:var(--ink-2);line-height:1.3}
+  .aud-dot{width:5px;height:5px;border-radius:50%;background:#B9A8E8;margin-top:27px}
+  .an-violet{background:var(--violet-soft);color:var(--violet)}
+  .an-pink{background:#FCE7F3;color:#DB2777}
+  .an-green{background:#D1FAE5;color:#059669}
+  .an-blue{background:#DBEAFE;color:#2563EB}
+  .an-teal{background:#CCFBF1;color:#0D9488}
+  .an-amber{background:#FEF3C7;color:#B45309}
+  .aud-note{
+    margin:32px auto 0;width:fit-content;max-width:100%;
+    display:flex;align-items:center;gap:10px;
+    background:#E9E1FA;border-radius:999px;padding:12px 24px;
+    color:var(--violet);font-weight:700;font-size:.95rem;
+  }
+  .aud-note svg{width:17px;height:17px;flex-shrink:0}
 
   /* ============ SEÇÕES ============ */
   .section{padding:96px 0 8px}
@@ -1142,6 +1201,10 @@
     .features{grid-template-columns:1fr 1fr}
     .section-head.rec{grid-template-columns:1fr}
     .rec-art{display:none}
+    .aud-bar{grid-template-columns:1fr}
+    .aud-item{border-left:none;border-top:1px solid var(--border)}
+    .aud-item:first-child{border-top:none}
+    .aud-dot{display:none}
     .editor-band{grid-template-columns:1fr}
     .editor-shot{padding:0 40px 44px}
     .templates{grid-template-columns:1fr 1fr}
@@ -1483,9 +1546,86 @@
 <!-- ============ RECURSOS ============ -->
 <section class="section" id="recursos">
   <div class="wrap">
-    <div class="niches reveal">
-      <b>Ideal para:</b>
-      <span>restaurantes</span><span>confeitarias</span><span>estúdios</span><span>academias</span><span>advocacias</span><span>consultorias</span><span>imobiliárias</span><span>salões de beleza</span><span class="more">sites para cafeterias e muito mais</span>
+    <div class="audience reveal">
+      <div class="aud-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/><path d="M18.5 14.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/></svg>
+        Feito para todos os tipos de negócios
+      </div>
+      <h2>O TurboBuilder foi criado<br>para <span class="hl-grad">impulsionar o seu sucesso</span></h2>
+      <p class="lead">Soluções completas de hospedagem e performance, desenvolvidas pela TurboCloud, pensadas especialmente por você e para o seu negócio.</p>
+      <div class="aud-bar">
+        <div class="aud-item">
+          <span class="aud-ico ai-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 8.5 4 4 0 0117.5 18H7z"/></svg></span>
+          <div><small>Infraestrutura</small><b>TurboCloud</b><span class="cap">Alta performance e estabilidade</span></div>
+        </div>
+        <div class="aud-item">
+          <span class="aud-ico ai-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg></span>
+          <div><small>Suporte dedicado</small><b>por você</b><span class="cap">Atendimento humano e rápido</span></div>
+        </div>
+        <div class="aud-item">
+          <span class="aud-ico ai-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg></span>
+          <div><small>Sites até</small><b>milissegundos</b><span class="cap">Carregamento ultra rápido</span></div>
+        </div>
+      </div>
+      <div class="aud-card">
+        <div class="aud-head">
+          <span class="aud-target" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></span>
+          <div>
+            <b>Ideal para:</b>
+            <span>Qualquer negócio que busca mais performance, segurança e resultados.</span>
+          </div>
+        </div>
+        <div class="aud-grid">
+          <div class="aud-niche">
+            <i class="an-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v6a2 2 0 002 2v10"/><path d="M11 3v6a2 2 0 01-2 2"/><path d="M7 3v4"/><path d="M16 3c-1.5 1.5-2 4-2 6.5 0 1.5 1 2.5 2 2.5v9"/></svg></i>
+            <span>Restaurantes</span>
+          </div>
+          <span class="aud-dot" aria-hidden="true"></span>
+          <div class="aud-niche">
+            <i class="an-pink" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 11h9l-1.1 7.5a2 2 0 01-2 1.5h-2.8a2 2 0 01-2-1.5L7.5 11z"/><path d="M6.8 11a5.2 4.2 0 0110.4 0"/><circle cx="12" cy="4.2" r="1.3"/></svg></i>
+            <span>Confeitarias</span>
+          </div>
+          <span class="aud-dot" aria-hidden="true"></span>
+          <div class="aud-niche">
+            <i class="an-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l10 4.5-10 4.5L2 8.5 12 4z"/><path d="M6.5 10.8V15c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.2"/><path d="M22 8.5V14"/></svg></i>
+            <span>Estúdios</span>
+          </div>
+          <span class="aud-dot" aria-hidden="true"></span>
+          <div class="aud-niche">
+            <i class="an-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-1.5-1.3-3.5-2-6-2v14c2.5 0 4.5.7 6 2 1.5-1.3 3.5-2 6-2V4c-2.5 0-4.5.7-6 2z"/><path d="M12 6v14"/></svg></i>
+            <span>Academias</span>
+          </div>
+          <span class="aud-dot" aria-hidden="true"></span>
+          <div class="aud-niche">
+            <i class="an-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M8 20h8"/><path d="M4 8h16"/><path d="M6 8l-2.8 6a3.1 3.1 0 005.6 0L6 8z"/><path d="M18 8l-2.8 6a3.1 3.1 0 005.6 0L18 8z"/></svg></i>
+            <span>Advocacias</span>
+          </div>
+          <span class="aud-dot" aria-hidden="true"></span>
+          <div class="aud-niche">
+            <i class="an-teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M4 13h16"/></svg></i>
+            <span>Consultorias</span>
+          </div>
+          <span class="aud-dot" aria-hidden="true"></span>
+          <div class="aud-niche">
+            <i class="an-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V5a1 1 0 011-1h10a1 1 0 011 1v16"/><path d="M4 21h16"/><path d="M9.5 8h1.5M13 8h1.5M9.5 12h1.5M13 12h1.5"/><path d="M11 21v-3.5h2V21"/></svg></i>
+            <span>Imobiliárias</span>
+          </div>
+          <span class="aud-dot" aria-hidden="true"></span>
+          <div class="aud-niche">
+            <i class="an-pink" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6.5" r="2.5"/><circle cx="6" cy="17.5" r="2.5"/><path d="M8.3 8L20 18.5"/><path d="M8.3 16L20 5.5"/></svg></i>
+            <span>Salões de beleza</span>
+          </div>
+          <span class="aud-dot" aria-hidden="true"></span>
+          <div class="aud-niche">
+            <i class="an-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="18" cy="12" r="1.7"/></svg></i>
+            <span>E muito mais</span>
+          </div>
+        </div>
+        <div class="aud-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5.5 5.5 1-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1L12 3z"/></svg>
+          E também sites para cafeterias e muitos outros negócios!
+        </div>
+      </div>
     </div>
     <div class="section-head rec reveal">
       <div>
