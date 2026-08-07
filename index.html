@@ -214,6 +214,10 @@
   @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
   @keyframes builder-in{from{opacity:0;transform:translateY(34px) scale(.95)}to{opacity:1;transform:none}}
   .hero p.lead{max-width:520px;margin:22px 0 32px}
+  /* fonte menor apenas no desktop */
+  @media (min-width:761px){
+    .hero p.lead{font-size:1.02rem}
+  }
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
   .btn svg{width:20px;height:20px;flex-shrink:0}
   .btn-ghost svg{color:var(--violet)}
