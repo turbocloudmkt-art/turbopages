@@ -1113,6 +1113,10 @@
   .cloud-band .eyebrow::before{background:var(--violet-bright)}
   .cloud-band h2{color:#fff}
   .cloud-band h2 .hl{color:#A78BFA}
+  /* fonte menor apenas no desktop para caber em duas linhas */
+  @media (min-width:761px){
+    .cloud-band h2{font-size:1.85rem}
+  }
   .cloud-band .lead{color:#C3BBE6;margin-top:16px}
   /* datacenter em wireframe no rodapé da banda */
   .cloud-art{
@@ -2028,7 +2032,7 @@
     <div class="cloud-band reveal">
       <div>
         <div class="eyebrow">Por dentro da TurboCloud</div>
-        <h2>A performance de quem<br>já hospeda milhares<br>de <span class="hl">sites</span></h2>
+        <h2>A performance de quem já hospeda<br>milhares de <span class="hl">sites</span></h2>
         <p class="lead">O TurboBuilder nasce dentro da TurboCloud, referência em hospedagem de alta performance. Seu site já vem com a infraestrutura que mantém tudo rápido e no ar, sem você configurar nada.</p>
         <div class="aud-cta cloud-cta reveal">
           <a href="#planos" class="btn btn-primary btn-arrow">Criar meu site agora</a>
