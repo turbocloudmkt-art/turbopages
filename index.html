@@ -179,7 +179,7 @@
     background:var(--violet-soft);border:1px solid #E0D4FA;
     padding:7px 15px;border-radius:999px;margin-bottom:26px;
   }
-  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px var(--green-soft)}
+  .hero-badge svg{width:13px;height:13px;color:var(--violet);flex-shrink:0}
   .hero h1 em{
     font-style:normal;color:var(--violet);
     background:linear-gradient(90deg,var(--violet),var(--violet-bright),#7C3AED,var(--violet));
@@ -200,42 +200,50 @@
   @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
   @keyframes builder-in{from{opacity:0;transform:translateY(34px) scale(.95)}to{opacity:1;transform:none}}
   .hero p.lead{max-width:520px;margin:22px 0 32px}
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
-  .hero-proofs{display:flex;gap:24px;flex-wrap:wrap;font-size:.88rem;font-weight:600;color:var(--muted)}
-  .hero-proofs span{display:inline-flex;align-items:center;gap:8px}
-  .hero-proofs .tick{color:var(--green);font-weight:800}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+  .btn svg{width:17px;height:17px;flex-shrink:0}
+  .btn-ghost svg{color:var(--violet)}
+  .hero-proofs{display:flex;flex-wrap:wrap}
+  .proof{
+    display:flex;align-items:center;gap:11px;
+    padding:0 24px;border-left:1px solid var(--border);
+    font-size:.88rem;font-weight:600;color:var(--muted);line-height:1.35;
+  }
+  .proof:first-child{padding-left:0;border-left:none}
+  .proof svg{width:26px;height:26px;color:var(--violet);flex-shrink:0}
 
   /* ---- Assinatura: o construtor ---- */
   .builder{
     position:relative;border-radius:20px;overflow:hidden;
-    background:var(--panel);border:1px solid var(--panel-border);
-    box-shadow:0 48px 90px -38px rgba(25,16,70,.5), 0 18px 40px -24px rgba(109,40,217,.35);
+    background:#fff;border:1px solid var(--border);
+    box-shadow:0 44px 84px -38px rgba(25,16,70,.35), 0 18px 40px -24px rgba(109,40,217,.18);
   }
   .builder-bar{
     display:flex;align-items:center;gap:7px;
-    padding:13px 16px;border-bottom:1px solid var(--panel-border);
-    background:rgba(255,255,255,.03);
+    padding:13px 16px;border-bottom:1px solid var(--border);
+    background:#FCFBFF;
   }
   .builder-bar i{width:11px;height:11px;border-radius:50%;display:block}
   .builder-bar i:nth-child(1){background:#FF5F57}
   .builder-bar i:nth-child(2){background:#FEBC2E}
   .builder-bar i:nth-child(3){background:#28C840}
-  .builder-bar .url{margin-left:12px;font-family:var(--font-mono);font-size:.72rem;color:#8B84B0}
+  .builder-bar .url{margin-left:12px;font-family:var(--font-mono);font-size:.72rem;color:var(--muted)}
   .builder-body{padding:20px}
 
   .prompt-box{
     display:flex;align-items:center;gap:12px;
     padding:13px 16px;border-radius:12px;
-    border:1px solid rgba(139,92,246,.45);
-    background:rgba(139,92,246,.10);
+    border:1px solid var(--border);
+    background:#fff;
+    box-shadow:0 4px 14px -8px rgba(25,16,70,.12);
     margin-bottom:18px;
   }
-  .prompt-box .spark{color:var(--violet-bright);font-size:1rem;flex-shrink:0}
+  .prompt-box .spark{color:var(--violet);font-size:1rem;flex-shrink:0}
   .prompt-text{
-    font-family:var(--font-mono);font-size:.72rem;color:#E4DDFA;
+    font-family:var(--font-mono);font-size:.72rem;color:var(--ink);
     white-space:nowrap;overflow:hidden;
     max-width:100%;
-    border-right:2px solid var(--violet-bright);
+    border-right:2px solid var(--violet);
     padding-right:2px;
   }
   .prompt-send{
@@ -244,7 +252,7 @@
     padding:8px 15px;border-radius:9px;color:#fff;background:var(--violet);
   }
 
-  .canvas{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--panel-border);background:var(--panel-2)}
+  .canvas{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#fff}
   /* camada 1: esqueleto em construção (some ao final do ciclo) */
   .site-skeleton{opacity:0}
   /* camada 2: a página pronta da cafeteria */
@@ -283,15 +291,17 @@
   .builder-bar .url{display:grid}
   .builder-bar .url > span{grid-area:1/1;white-space:nowrap}
   .url-a{opacity:0}
-  .url-b{opacity:1;color:#5EE6B0}
+  .url-b{opacity:1;color:var(--green)}
   @media (prefers-reduced-motion: no-preference){
     .site-skeleton{animation:layer-out 7s ease infinite}
     .site-final{animation:layer-in 7s ease infinite}
-    .url-a{animation:layer-out 7s ease infinite}
-    .url-b{animation:layer-in 7s ease infinite}
+    .url-a{animation:url-out 7s ease infinite}
+    .url-b{animation:url-in 7s ease infinite}
   }
   @keyframes layer-out{0%,56%{opacity:1}62%,96%{opacity:0}100%{opacity:1}}
   @keyframes layer-in{0%,56%{opacity:0}62%,96%{opacity:1}100%{opacity:0}}
+  @keyframes url-out{0%,54%{opacity:1}58%,97%{opacity:0}100%{opacity:1}}
+  @keyframes url-in{0%,60%{opacity:0}64%,96%{opacity:1}100%{opacity:0}}
   .canvas-hero{
     height:98px;background:linear-gradient(120deg,#7C3AED,#4C1D95);
     display:flex;flex-direction:column;justify-content:center;gap:8px;padding:18px;
@@ -300,15 +310,15 @@
   .canvas-hero .sk:nth-child(1){width:54%;height:12px}
   .canvas-hero .sk:nth-child(2){width:72%;height:8px;background:rgba(255,255,255,.42)}
   .canvas-hero .sk:nth-child(3){width:92px;height:24px;background:#fff;margin-top:4px;border-radius:8px}
-  .canvas-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:14px}
+  .canvas-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:14px;background:#fff}
   .canvas-cards .cell{
     height:66px;border-radius:9px;
-    background:linear-gradient(160deg,rgba(139,92,246,.16),rgba(139,92,246,.05));
-    border:1px solid rgba(139,92,246,.18);
+    background:#F3F1FA;
+    border:1px solid #ECE8F7;
     display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding:9px;
   }
-  .canvas-cards .cell b{width:70%;height:6px;border-radius:4px;background:rgba(255,255,255,.5)}
-  .canvas-cards .cell u{width:45%;height:5px;border-radius:4px;background:rgba(255,255,255,.22)}
+  .canvas-cards .cell b{width:70%;height:6px;border-radius:4px;background:#D9D3EC}
+  .canvas-cards .cell u{width:45%;height:5px;border-radius:4px;background:#E7E2F5}
 
   .builder-status{display:grid;margin-top:16px;min-height:24px}
   .status-line{
@@ -316,13 +326,13 @@
     display:flex;align-items:center;gap:9px;
     font-family:var(--font-mono);font-size:.72rem;
   }
-  .status-working{color:#9A92C4}
+  .status-working{color:var(--muted)}
   .status-working .spin{
     width:13px;height:13px;border-radius:50%;flex-shrink:0;
-    border:2px solid var(--violet-bright);border-top-color:transparent;
+    border:2px solid var(--violet);border-top-color:transparent;
   }
-  .status-live{color:#5EE6B0}
-  .status-live .dot{width:8px;height:8px;border-radius:50%;background:#34D399;box-shadow:0 0 10px #34D399;flex-shrink:0}
+  .status-live{color:var(--green)}
+  .status-live .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(14,159,110,.6);flex-shrink:0}
 
   /* estado base = cena final (funciona sem animação) */
   .status-working{opacity:0}
@@ -382,6 +392,7 @@
     display:inline-flex;align-items:center;gap:7px;pointer-events:none;
   }
   .fx-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+  .fx-chip svg{width:13px;height:13px;color:var(--green);flex-shrink:0}
   .fx-chip-1{left:-30px;top:34%}
   .fx-chip-2{right:-22px;bottom:24%}
   /* selo PageSpeed: o site nasce otimizado */
@@ -422,29 +433,26 @@
     border:1px solid var(--border);border-radius:var(--radius);
     overflow:hidden;
   }
-  .metric{padding:26px 28px;border-left:1px solid var(--border)}
+  .metric{
+    padding:26px 28px;border-left:1px solid var(--border);
+    display:flex;align-items:center;gap:16px;
+  }
   .metric:first-child{border-left:none}
-  .metric b{font-family:var(--font-display);font-weight:800;font-size:1.8rem;display:block;color:var(--ink)}
+  .metric > svg{width:34px;height:34px;color:var(--violet);flex-shrink:0}
+  .metric b{font-family:var(--font-display);font-weight:800;font-size:1.8rem;display:block;color:var(--ink);line-height:1.15}
   .metric span{font-size:.86rem;color:var(--muted)}
   .metric b .accent{color:var(--violet)}
   .metric b .num{font-size:1em;color:var(--ink)}
 
-  /* marquee de nichos */
-  .marquee{
-    overflow:hidden;margin-top:48px;
-    mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+  /* faixa de nichos */
+  .niches{
+    margin-top:44px;display:flex;flex-wrap:wrap;align-items:baseline;
+    gap:8px 0;font-size:.95rem;font-weight:600;
   }
-  .marquee-track{display:flex;width:max-content}
-  .marquee-track span{
-    font-family:var(--font-mono);font-size:.78rem;color:var(--muted);
-    white-space:nowrap;padding-right:52px;
-  }
-  .marquee-track b{color:var(--violet);font-weight:600}
-  @media (prefers-reduced-motion: no-preference){
-    .marquee-track{animation:marq 32s linear infinite}
-  }
-  @keyframes marq{to{transform:translateX(-50%)}}
+  .niches > b{color:var(--ink);font-weight:800;margin-right:20px}
+  .niches span{color:#6E5BA6}
+  .niches span + span::before{content:"·";margin:0 13px;color:#C9C2E4}
+  .niches .more{color:var(--muted);font-weight:500}
 
   /* ============ SEÇÕES ============ */
   .section{padding:96px 0 8px}
@@ -989,6 +997,8 @@
     .builder-tag{right:8px}
     .hero-ctas{flex-direction:column}
     .hero-ctas .btn{width:100%}
+    .proof{padding:0 12px;font-size:.8rem;gap:8px}
+    .proof svg{width:22px;height:22px}
     /* arte do hero mais compacta no mobile (~30% menor) */
     .builder-body{padding:12px 14px 14px}
     .prompt-box{padding:9px 12px;margin-bottom:12px}
@@ -1061,24 +1071,44 @@
   <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wrap hero-grid">
     <div>
-      <div class="hero-badge"><span class="dot"></span>powered by TurboCloud · hospedagem inclusa</div>
-      <h1>Seu site no ar em minutos.<br><em>Escrito por você, construído por IA.</em></h1>
-      <p class="lead">Descreva seu negócio em uma frase e o TurboPages cria o site completo, com textos, design e páginas, já publicado na hospedagem de alta performance da TurboCloud.</p>
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg>
+        powered by TurboCloud · hospedagem inclusa
+      </div>
+      <h1>Seu site no ar<br>em minutos.<br><em>Escrito por você,<br>construído por IA.</em></h1>
+      <p class="lead">Descreva seu negócio em uma frase e o TurboPages cria um site completo, com textos, design e páginas, já publicado na hospedagem de alta performance da TurboCloud.</p>
       <div class="hero-ctas">
-        <a href="#planos" class="btn btn-primary">Criar meu site agora</a>
-        <a href="#como" class="btn btn-ghost">Ver como funciona</a>
+        <a href="#planos" class="btn btn-primary">Criar meu site agora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+        <a href="#como" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.54.84l10-6.5a1 1 0 000-1.68l-10-6.5A1 1 0 008 5.5z"/></svg>
+          Ver como funciona
+        </a>
       </div>
       <div class="hero-proofs">
-        <span><span class="tick">✓</span> Sem cartão para começar</span>
-        <span><span class="tick">✓</span> SSL e CDN inclusos</span>
-        <span><span class="tick">✓</span> Domínio próprio</span>
+        <span class="proof">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 11.5l2 2 4-4.5"/></svg>
+          Sem cartão<br>para começar
+        </span>
+        <span class="proof">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+          SSL e CDN<br>inclusos
+        </span>
+        <span class="proof">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 4 5.6 4 9s-1.5 6.6-4 9c-2.5-2.4-4-5.6-4-9s1.5-6.6 4-9z"/></svg>
+          Domínio<br>próprio
+        </span>
       </div>
     </div>
 
     <!-- Assinatura: o prompt digita, o site se monta, publica -->
     <div class="builder-wrap">
       <div class="builder-tag"><span class="dot"></span>ao vivo no editor</div>
-      <div class="fx-chip fx-chip-1" aria-hidden="true"><span class="dot"></span>SSL ativo</div>
+      <div class="fx-chip fx-chip-1" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        SSL ativo
+      </div>
       <div class="fx-chip fx-chip-2" aria-hidden="true">⚡ CDN global</div>
       <div class="fx-chip fx-score js-count" aria-hidden="true" title="PageSpeed do Google">
         <span class="ring">
@@ -1128,8 +1158,8 @@
             </div>
           </div>
           <div class="builder-status">
-            <span class="status-line status-working"><span class="spin"></span>gerando páginas, textos e imagens…</span>
-            <span class="status-line status-live"><span class="dot"></span>publicado · cafeteria.turbopages.site · SSL + CDN ativos</span>
+            <span class="status-line status-working"><span class="spin"></span>Gerando páginas, textos e imagens…</span>
+            <span class="status-line status-live"><span class="dot"></span>Publicado · cafeteria.turbopages.site · SSL + CDN ativos</span>
           </div>
         </div>
       </div>
@@ -1141,15 +1171,26 @@
 <section class="metrics">
   <div class="wrap">
     <div class="metrics-grid reveal js-count">
-      <div class="metric"><b><span class="num" data-target="3" data-prefix="~">~3</span> <span class="accent">min</span></b><span>do texto ao site publicado</span></div>
-      <div class="metric"><b><span class="num" data-target="99.9" data-decimals="1">99,9</span><span class="accent">%</span></b><span>de uptime pela TurboCloud</span></div>
-      <div class="metric"><b>0</b><span>linhas de código escritas por você</span></div>
-      <div class="metric"><b>CDN <span class="accent">global</span></b><span>carregamento em milissegundos</span></div>
-    </div>
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span><b>sites para →</b> cafeterias · barbearias · clínicas · petshops · restaurantes · confeitarias · estúdios · academias · advocacias · consultorias · imobiliárias · salões de beleza · </span><span><b>sites para →</b> cafeterias · barbearias · clínicas · petshops · restaurantes · confeitarias · estúdios · academias · advocacias · consultorias · imobiliárias · salões de beleza · </span>
+      <div class="metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16.5a8 8 0 1114 0"/><path d="M12 13l3.5-4"/><circle cx="12" cy="14" r="1.4" fill="currentColor"/></svg>
+        <div><b><span class="num" data-target="3" data-prefix="~">~3</span> <span class="accent">min</span></b><span>do texto ao site publicado</span></div>
       </div>
+      <div class="metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 11.5l2 2 4-4.5"/></svg>
+        <div><b><span class="num" data-target="99.9" data-decimals="1">99,9</span><span class="accent">%</span></b><span>de uptime pela TurboCloud</span></div>
+      </div>
+      <div class="metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l-4 3 4 3"/><path d="M16 9l4 3-4 3"/><path d="M13.5 6l-3 12"/></svg>
+        <div><b>0</b><span>linhas de código escritas por você</span></div>
+      </div>
+      <div class="metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 4 5.6 4 9s-1.5 6.6-4 9c-2.5-2.4-4-5.6-4-9s1.5-6.6 4-9z"/></svg>
+        <div><b>CDN <span class="accent">global</span></b><span>carregamento em milissegundos</span></div>
+      </div>
+    </div>
+    <div class="niches">
+      <b>Ideal para:</b>
+      <span>restaurantes</span><span>confeitarias</span><span>estúdios</span><span>academias</span><span>advocacias</span><span>consultorias</span><span>imobiliárias</span><span>salões de beleza</span><span class="more">sites para cafeterias e muito mais</span>
     </div>
   </div>
 </section>
