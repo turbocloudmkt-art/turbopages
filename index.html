@@ -995,21 +995,36 @@
 
   /* ============ TURBOCLOUD ============ */
   .cloud-band{
+    position:relative;overflow:hidden;
     border-radius:24px;padding:56px 52px;
     background:linear-gradient(120deg,var(--panel),#2A1760);
     border:1px solid var(--panel-border);
     display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;
     margin-top:64px;
   }
+  .cloud-band > *{position:relative;z-index:1}
   .cloud-band .eyebrow{color:var(--violet-bright)}
   .cloud-band .eyebrow::before{background:var(--violet-bright)}
   .cloud-band h2{color:#fff}
+  .cloud-band h2 .hl{color:#A78BFA}
   .cloud-band .lead{color:#C3BBE6;margin-top:16px}
+  /* datacenter em wireframe no rodapé da banda */
+  .cloud-art{
+    position:absolute;left:18px;bottom:-6px;width:400px;max-width:60%;
+    z-index:0;opacity:.5;pointer-events:none;
+  }
   .cloud-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .cloud-stat{
-    padding:22px;border-radius:14px;
+    padding:22px;border-radius:16px;
     background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
   }
+  .cs-ico{
+    width:46px;height:46px;border-radius:50%;margin-bottom:14px;
+    background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 24px -10px rgba(139,92,246,.7);
+  }
+  .cs-ico svg{width:22px;height:22px}
   .cloud-stat b{font-family:var(--font-display);font-weight:800;font-size:1.5rem;color:#fff;display:block}
   .cloud-stat span{font-size:.82rem;color:#AFA7D6}
 
@@ -1026,7 +1041,7 @@
     font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--ink);
   }
   .faq-q .sign{
-    width:28px;height:28px;border-radius:9px;flex-shrink:0;
+    width:30px;height:30px;border-radius:50%;flex-shrink:0;
     display:flex;align-items:center;justify-content:center;
     background:var(--violet-soft);color:var(--violet);
     font-size:1.15rem;font-weight:500;line-height:1;
@@ -1035,6 +1050,19 @@
   .faq[data-open="true"] .faq-q .sign{transform:rotate(45deg)}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
   .faq-a p{padding:0 24px 22px;font-size:.95rem;color:var(--muted);max-width:660px}
+  .faq-more{
+    margin:30px auto 0;width:fit-content;
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-display);font-weight:700;font-size:.98rem;color:var(--violet);
+  }
+  .faq-more .qm{
+    width:23px;height:23px;border-radius:50%;flex-shrink:0;
+    border:1.8px solid currentColor;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:.78rem;font-weight:800;
+  }
+  .faq-more .arr{transition:transform .15s ease}
+  .faq-more:hover .arr{transform:translateX(4px)}
 
   /* ============ CTA FINAL ============ */
   .final{padding:96px 0 100px}
@@ -1787,16 +1815,43 @@
 
     <!-- ============ TURBOCLOUD ============ -->
     <div class="cloud-band reveal">
+      <svg class="cloud-art" viewBox="0 0 400 130" fill="none" stroke="#8B6FE0" stroke-width="1.2" aria-hidden="true">
+        <path d="M60 70l60-18 70 20-60 20-70-22z"/>
+        <path d="M60 70v22l70 22v-22"/>
+        <path d="M250 92l60-20v22l-60 20v-22z"/>
+        <path d="M120 52v-14l70 20v14"/>
+        <path d="M120 38l60-18 70 20-60 18-70-20z"/>
+        <path d="M190 58v56l60-20"/>
+        <path d="M85 80l14 4M105 86l14 4M270 96l14-4"/>
+        <path d="M30 96c-8 0-12-6-8-12 2-8 14-8 17-2 6-4 14 0 13 7 0 5-5 7-9 7H30z" opacity=".6"/>
+        <circle cx="120" cy="38" r="2.5" fill="#A78BFA" stroke="none"/>
+        <circle cx="250" cy="40" r="2.5" fill="#A78BFA" stroke="none"/>
+        <circle cx="60" cy="70" r="2.5" fill="#A78BFA" stroke="none"/>
+        <circle cx="310" cy="72" r="2.5" fill="#A78BFA" stroke="none"/>
+        <circle cx="190" cy="114" r="2.5" fill="#A78BFA" stroke="none"/>
+      </svg>
       <div>
         <div class="eyebrow">Por dentro da TurboCloud</div>
-        <h2>A performance de quem já hospeda milhares de sites</h2>
+        <h2>A performance de quem<br>já hospeda milhares<br>de <span class="hl">sites</span></h2>
         <p class="lead">O TurboPages nasce dentro da TurboCloud, referência em hospedagem de alta performance. Seu site já vem com a infraestrutura que mantém tudo rápido e no ar, sem você configurar nada.</p>
       </div>
       <div class="cloud-stats">
-        <div class="cloud-stat"><b>CDN</b><span>global integrada</span></div>
-        <div class="cloud-stat"><b>SSL</b><span>grátis e automático</span></div>
-        <div class="cloud-stat"><b>Backups</b><span>diários inclusos</span></div>
-        <div class="cloud-stat"><b>99,9%</b><span>uptime garantido</span></div>
+        <div class="cloud-stat">
+          <span class="cs-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 4 5.6 4 9s-1.5 6.6-4 9c-2.5-2.4-4-5.6-4-9s1.5-6.6 4-9z"/></svg></span>
+          <b>CDN</b><span>global integrada</span>
+        </div>
+        <div class="cloud-stat">
+          <span class="cs-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+          <b>SSL</b><span>grátis e automático</span>
+        </div>
+        <div class="cloud-stat">
+          <span class="cs-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 8.5 4 4 0 0117.5 18H7z"/><path d="M12 15v-4"/><path d="M10 13l2-2 2 2"/></svg></span>
+          <b>Backups</b><span>diários inclusos</span>
+        </div>
+        <div class="cloud-stat">
+          <span class="cs-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16.5a8 8 0 1114 0"/><path d="M12 13l3.5-4"/><circle cx="12" cy="14" r="1.4" fill="currentColor"/></svg></span>
+          <b>99,9%</b><span>uptime garantido</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1806,8 +1861,9 @@
 <section class="section" id="faq">
   <div class="wrap">
     <div class="section-head center reveal">
-      <div class="eyebrow">FAQ</div>
+      <div class="eyebrow mid">FAQ</div>
       <h2>Perguntas frequentes</h2>
+      <p class="lead">Tire suas dúvidas sobre os planos e o TurboPages.</p>
     </div>
     <div class="faq-list">
       <div class="faq reveal" data-open="false">
@@ -1846,6 +1902,11 @@
         <div class="faq-a"><p>Sim. Os planos são flexíveis e você pode cancelar a qualquer momento, sem multa ou fidelidade.</p></div>
       </div>
     </div>
+    <a href="#" class="faq-more reveal">
+      <span class="qm" aria-hidden="true">?</span>
+      Ainda tem dúvidas? Fale com nosso time
+      <span class="arr" aria-hidden="true">→</span>
+    </a>
   </div>
 </section>
 
