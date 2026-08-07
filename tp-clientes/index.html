@@ -88,6 +88,12 @@
     padding:6px 12px;border-radius:999px;white-space:nowrap;
   }
   .nav-actions{display:flex;align-items:center;gap:14px}
+  .nav-actions .login{
+    display:inline-flex;align-items:center;gap:7px;
+    font-weight:700;font-size:.95rem;color:var(--ink-2);
+  }
+  .nav-actions .login svg{width:18px;height:18px;flex-shrink:0}
+  .nav-actions .login:hover{color:var(--violet)}
   .btn-sm{padding:11px 20px;font-size:.92rem;border-radius:11px}
   .nav-actions .btn-sm svg{width:16px;height:16px}
 
@@ -305,6 +311,7 @@
   }
   @media (max-width:760px){
     .nav-tag{display:none}
+    .nav-actions .login{display:none}
     .nav-inner{gap:10px;padding:10px 16px}
     .nav-logo img{height:30px}
     .logo-text{font-size:1.1rem}
@@ -329,6 +336,9 @@
     </a>
     <span class="nav-tag">exclusivo para clientes TurboCloud</span>
     <div class="nav-actions">
+      <a href="https://page.turbocloud.com.br" target="_blank" rel="noopener" class="login">Entrar
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h5a1 1 0 011 1v16a1 1 0 01-1 1h-5"/><path d="M9 8l4 4-4 4"/><path d="M13 12H3"/></svg>
+      </a>
       <a href="#planos" class="btn btn-primary btn-sm">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/><path d="M18.5 14.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/></svg>
         Ativar agora
