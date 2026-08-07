@@ -1,6 +1,6 @@
-# TurboPages Landing Page
+# TurboBuilder Landing Page
 
-Landing page estática do TurboPages, o criador de sites por IA da TurboCloud.
+Landing page estática do TurboBuilder (antes TurboPages), o criador de sites por IA da TurboCloud. A marca no site é sempre "TurboBuilder"; os arquivos de assets mantêm o prefixo antigo `turbopages-`.
 
 ## Desenvolvimento local
 
