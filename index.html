@@ -80,6 +80,7 @@
   }
   .eyebrow::before{content:"";width:22px;height:2px;background:var(--violet-bright);border-radius:2px}
   .eyebrow.no-line::before{display:none}
+  .eyebrow.dot::before{width:8px;height:8px;border-radius:50%;background:var(--violet)}
   .eyebrow svg{width:14px;height:14px;flex-shrink:0}
 
   /* ============ BOTÕES ============ */
@@ -501,11 +502,57 @@
   .step p{font-size:.97rem;color:var(--muted)}
 
   /* ============ RECURSOS ============ */
+  .section-head.rec{
+    max-width:none;display:grid;grid-template-columns:1.05fr .95fr;
+    gap:40px;align-items:center;
+  }
+  .section-head.rec .lead{max-width:420px}
+  /* arte decorativa: tiles flutuantes */
+  .rec-art{position:relative;height:300px;min-width:0}
+  .rec-glass{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:230px;height:250px;border-radius:30px;
+    background:linear-gradient(165deg,rgba(255,255,255,.95),rgba(242,237,253,.75));
+    border:1px solid #EDE7FB;
+    box-shadow:0 40px 80px -35px rgba(109,40,217,.35);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  }
+  .rec-glass img{width:96px;height:auto}
+  .rec-glass i{display:block;height:11px;border-radius:6px;background:#E4DDF6}
+  .rec-glass i:nth-of-type(1){width:120px}
+  .rec-glass i:nth-of-type(2){width:80px;margin-top:-12px}
+  .rec-tile{
+    position:absolute;display:flex;align-items:center;justify-content:center;
+    background:#fff;border:1px solid var(--border);border-radius:18px;
+    box-shadow:0 18px 40px -18px rgba(25,16,70,.3);
+    color:var(--violet);
+  }
+  .rec-tile svg{width:45%;height:45%}
+  .rec-tile img{width:52%;height:auto}
+  .rec-tile-logo{width:74px;height:74px;left:6%;top:6%}
+  .rec-tile-bolt{
+    width:70px;height:70px;right:8%;top:10%;
+    background:linear-gradient(135deg,#8B5CF6,#6D28D9);border:none;color:#fff;
+    box-shadow:0 18px 40px -14px rgba(109,40,217,.6);
+  }
+  .rec-tile-code{width:64px;height:64px;left:0;top:52%}
+  .rec-tile-lock{width:64px;height:64px;right:4%;bottom:4%}
+  @media (prefers-reduced-motion: no-preference){
+    .rec-tile-logo{animation:bob 6s ease-in-out infinite}
+    .rec-tile-bolt{animation:bob 5s ease-in-out infinite reverse}
+    .rec-tile-code{animation:bob 7s ease-in-out infinite}
+    .rec-tile-lock{animation:bob 6.5s ease-in-out infinite reverse}
+  }
   .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .feature{
+    position:relative;
     background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
     padding:28px 26px;
     transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .fnum{
+    position:absolute;top:26px;right:26px;
+    font-family:var(--font-mono);font-weight:600;font-size:.8rem;color:#B9A8E8;
   }
   .feature:hover{transform:translateY(-4px);border-color:#D9CCF7;box-shadow:0 22px 44px -26px rgba(109,40,217,.35)}
   .feature-icon{
@@ -533,9 +580,10 @@
   .editor-copy .eyebrow::before{background:var(--violet-bright)}
   .editor-copy h2{color:#fff}
   .editor-copy .lead{color:#B7AFDC;margin:16px 0 28px}
+  .editor-copy h2 .hl{color:#A78BFA}
   .editor-copy ul{list-style:none;display:flex;flex-direction:column;gap:14px}
   .editor-copy li{display:flex;gap:12px;align-items:flex-start;font-size:.97rem;color:#D6CFF2;font-weight:500}
-  .editor-copy li .tick{color:#5EE6B0;font-weight:800;flex-shrink:0}
+  .editor-copy li svg{width:20px;height:20px;color:#34D399;flex-shrink:0;margin-top:1px}
   .editor-shot{padding:44px 44px 44px 0;display:flex;align-items:center}
   .editor-app{
     width:100%;border-radius:16px;overflow:hidden;
@@ -547,15 +595,27 @@
     width:220px;flex-shrink:0;border-right:1px solid var(--panel-border);
     padding:16px;display:flex;flex-direction:column;gap:11px;background:#141040;
   }
-  .chat-pane .label{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#7A72A8;margin-bottom:2px}
+  .chat-pane .label{
+    display:flex;align-items:center;gap:6px;
+    font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#7A72A8;margin-bottom:2px;
+  }
+  .chat-pane .label svg{width:11px;height:11px;color:#A78BFA;flex-shrink:0}
+  .msg-ai .ok{color:#34D399;font-weight:800}
   .msg{max-width:92%;padding:9px 12px;font-size:.76rem;line-height:1.45;border-radius:12px}
   .msg-user{align-self:flex-end;background:var(--violet);color:#fff;border-bottom-right-radius:4px}
   .msg-ai{align-self:flex-start;background:#221B52;color:#CFC8EE;border-bottom-left-radius:4px}
   .chat-input{
-    margin-top:auto;padding:9px 12px;border-radius:10px;
+    margin-top:auto;padding:8px 8px 8px 12px;border-radius:10px;
     border:1px solid rgba(255,255,255,.12);background:#0F0A2C;
     font-family:var(--font-mono);font-size:.7rem;color:#7A72A8;
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
   }
+  .chat-input .send{
+    width:24px;height:24px;border-radius:50%;flex-shrink:0;
+    background:var(--violet);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .chat-input .send svg{width:12px;height:12px}
   .preview-pane{flex:1;padding:12px 16px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
   .pv-toolbar{display:flex;justify-content:center;gap:12px;padding:2px 0 4px}
   .pv-dev{color:#fff;opacity:.3;display:inline-flex}
@@ -582,8 +642,8 @@
   @keyframes chat-gen{0%,36%{opacity:0}42%,100%{opacity:1}}
   .preview-hero{
     height:86px;border-radius:10px;flex-shrink:0;
-    background:linear-gradient(120deg,#2A1A5E,#171040);
-    border:1px dashed rgba(139,92,246,.5);
+    background:#1D1548;
+    border:1px solid rgba(139,92,246,.25);
     display:flex;align-items:center;justify-content:space-between;padding:0 16px;
   }
   .preview-hero .lines{display:flex;flex-direction:column;gap:6px}
@@ -973,6 +1033,8 @@
     .steps{grid-template-columns:1fr;gap:36px}
     .step-line{display:none}
     .features{grid-template-columns:1fr 1fr}
+    .section-head.rec{grid-template-columns:1fr}
+    .rec-art{display:none}
     .editor-band{grid-template-columns:1fr}
     .editor-shot{padding:0 40px 44px}
     .templates{grid-template-columns:1fr 1fr}
@@ -1316,15 +1378,35 @@
 <!-- ============ RECURSOS ============ -->
 <section class="section" id="recursos">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Recursos</div>
-      <h2>Tudo que um pequeno negócio precisa, sem complicação</h2>
+    <div class="section-head rec reveal">
+      <div>
+        <div class="eyebrow dot">Recursos</div>
+        <h2>Tudo que um pequeno<br>negócio precisa,<br><span class="hl">sem complicação</span></h2>
+        <p class="lead">Ferramentas poderosas que simplificam sua vida e aceleram seus resultados.</p>
+      </div>
+      <div class="rec-art" aria-hidden="true">
+        <div class="rec-glass">
+          <img src="assets/turbopages-mark.png" alt="">
+          <i></i><i></i>
+        </div>
+        <div class="rec-tile rec-tile-logo"><img src="assets/turbopages-icon.png" alt=""></div>
+        <div class="rec-tile rec-tile-bolt">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg>
+        </div>
+        <div class="rec-tile rec-tile-code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3"/><path d="M16 9l4 3-4 3"/></svg>
+        </div>
+        <div class="rec-tile rec-tile-lock">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        </div>
+      </div>
     </div>
     <div class="features">
       <div class="feature reveal">
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/><path d="M19 15l.9 2.3L22 18l-2.1.7L19 21l-.9-2.3L16 18l2.1-.7L19 15z"/></svg>
         </div>
+        <span class="fnum">01</span>
         <h3>Criação por IA</h3>
         <p>Descreva e pronto: textos, layout e imagens gerados sob medida para o seu negócio, em português.</p>
       </div>
@@ -1332,6 +1414,7 @@
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg>
         </div>
+        <span class="fnum">02</span>
         <h3>Velocidade TurboCloud</h3>
         <p>Hospedagem de alta performance embutida em todos os planos. Seu site carrega em milissegundos.</p>
       </div>
@@ -1339,6 +1422,7 @@
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3"/><path d="M16 9l4 3-4 3"/><path d="M13 5l-2 14"/></svg>
         </div>
+        <span class="fnum">03</span>
         <h3>Sem código</h3>
         <p>Nada de HTML, plugins ou webdesigner. Você foca no negócio, a IA cuida do site.</p>
       </div>
@@ -1346,6 +1430,7 @@
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
         </div>
+        <span class="fnum">04</span>
         <h3>Domínio e SSL</h3>
         <p>Conecte seu domínio próprio com certificado SSL grátis e automático, em poucos cliques.</p>
       </div>
@@ -1353,6 +1438,7 @@
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
         </div>
+        <span class="fnum">05</span>
         <h3>Mobile e SEO</h3>
         <p>Sites responsivos e otimizados para o Google automaticamente, em qualquer dispositivo.</p>
       </div>
@@ -1360,6 +1446,7 @@
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 109-9 9.5 9.5 0 00-6.5 2.8L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3.5 2"/></svg>
         </div>
+        <span class="fnum">06</span>
         <h3>Histórico de versões</h3>
         <p>Toda alteração fica salva. Não gostou do resultado? Volte para qualquer versão com um clique.</p>
       </div>
@@ -1369,22 +1456,29 @@
     <div class="editor-band reveal">
       <div class="editor-copy">
         <div class="eyebrow">Editor com IA</div>
-        <h2>Edite qualquer coisa conversando</h2>
+        <h2>Edite qualquer<br>coisa <span class="hl">conversando</span></h2>
         <p class="lead">"Deixe o topo mais escuro", "adicione depoimentos", "troque o botão por 'Chamar no WhatsApp'". A IA entende e aplica em segundos, e você mantém o controle total.</p>
         <ul>
-          <li><span class="tick">✓</span> Comandos em português, do seu jeito</li>
-          <li><span class="tick">✓</span> Visualize em desktop, tablet e celular</li>
-          <li><span class="tick">✓</span> Não gostou? Restaure qualquer versão anterior</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Comandos em português, do seu jeito</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Visualize em desktop, tablet e celular</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Não gostou? Restaure qualquer versão anterior</li>
         </ul>
       </div>
       <div class="editor-shot">
         <div class="editor-app" data-tilt aria-label="Demonstração do editor por conversa">
           <div class="chat-pane">
-            <div class="label">Assistente IA</div>
+            <div class="label">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/></svg>
+              Assistente IA
+            </div>
             <div class="msg msg-user">Deixe o topo mais escuro e adicione um botão de WhatsApp</div>
-            <div class="msg msg-ai">Feito! Atualizei o topo e adicionei o botão de WhatsApp. ✦</div>
+            <div class="msg msg-ai">Feito! Atualizei o topo e adicionei o botão de WhatsApp. <span class="ok">✓</span></div>
             <div class="chat-gen"><i></i>Página gerada · <u>↺ Restaurar</u></div>
-            <div class="chat-input">Peça uma alteração…</div>
+            <div class="chat-input">Peça uma alteração…
+              <span class="send" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 11.5L20 4l-4.5 16-4.5-6.5-7.5-2z"/></svg>
+              </span>
+            </div>
           </div>
           <div class="preview-pane">
             <div class="pv-toolbar" aria-hidden="true">
