@@ -513,10 +513,15 @@
   .aud-card > *{position:relative}
   .aud-head{display:flex;gap:18px;align-items:center;margin-bottom:36px}
   .aud-target{
+    position:relative;
     width:62px;height:62px;border-radius:50%;flex-shrink:0;
     background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 14px 30px -10px rgba(109,40,217,.6);
+  }
+  .aud-target::after{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    border:2px solid rgba(139,92,246,.7);opacity:0;
   }
   .aud-target svg{width:28px;height:28px}
   .aud-head b{color:var(--violet);font-family:var(--font-display);font-weight:900;font-size:1.4rem;display:block;line-height:1.2}
@@ -554,19 +559,37 @@
   .cloud-cta .aud-proofs{justify-content:flex-start}
   .cloud-cta .proof{color:#C3BBE6;border-left-color:rgba(255,255,255,.16)}
   .cloud-cta .proof svg{color:#A78BFA}
-  /* nichos entram em cascata */
+  /* coreografia do Ideal para */
+  .aud-grid .aud-niche:nth-of-type(1){--nd:.05s}
+  .aud-grid .aud-niche:nth-of-type(2){--nd:.12s}
+  .aud-grid .aud-niche:nth-of-type(3){--nd:.19s}
+  .aud-grid .aud-niche:nth-of-type(4){--nd:.26s}
+  .aud-grid .aud-niche:nth-of-type(5){--nd:.33s}
+  .aud-grid .aud-niche:nth-of-type(6){--nd:.4s}
+  .aud-grid .aud-niche:nth-of-type(7){--nd:.47s}
+  .aud-grid .aud-niche:nth-of-type(8){--nd:.54s}
+  .aud-grid .aud-niche:nth-of-type(9){--nd:.61s}
   @media (prefers-reduced-motion: no-preference){
-    .audience .aud-niche{opacity:0;transform:translateY(18px) scale(.92);transition:opacity .5s ease,transform .5s ease}
-    .audience.is-in .aud-niche{opacity:1;transform:none}
-    .audience.is-in .aud-niche:nth-of-type(1){transition-delay:.05s}
-    .audience.is-in .aud-niche:nth-of-type(2){transition-delay:.12s}
-    .audience.is-in .aud-niche:nth-of-type(3){transition-delay:.19s}
-    .audience.is-in .aud-niche:nth-of-type(4){transition-delay:.26s}
-    .audience.is-in .aud-niche:nth-of-type(5){transition-delay:.33s}
-    .audience.is-in .aud-niche:nth-of-type(6){transition-delay:.4s}
-    .audience.is-in .aud-niche:nth-of-type(7){transition-delay:.47s}
-    .audience.is-in .aud-niche:nth-of-type(8){transition-delay:.54s}
-    .audience.is-in .aud-niche:nth-of-type(9){transition-delay:.61s}
+    .audience .aud-target,.audience .aud-niche,.audience .aud-dot,.audience .aud-note{opacity:0}
+    .audience.is-in .aud-target{animation:pop-in .6s cubic-bezier(.34,1.56,.64,1) both}
+    .audience.is-in .aud-target::after{animation:ring-pulse 3s ease-out infinite .9s}
+    .audience.is-in .aud-niche{
+      animation:niche-pop .5s cubic-bezier(.34,1.56,.64,1) both,niche-wave 4.2s ease-in-out infinite;
+      animation-delay:var(--nd,0s),calc(var(--nd,0s) + 1.4s);
+    }
+    .audience.is-in .aud-dot{animation:fade-in .5s ease both .8s}
+    .audience.is-in .aud-note{animation:pop-in .55s cubic-bezier(.34,1.56,.64,1) both 1s}
+    .audience.is-in .aud-note svg{animation:star-tw 2.8s ease-in-out infinite 1.8s}
+  }
+  @keyframes fade-in{from{opacity:0}to{opacity:1}}
+  @keyframes niche-pop{from{opacity:0;transform:translateY(22px) scale(.4)}to{opacity:1;transform:none}}
+  @keyframes niche-wave{
+    0%,14%,100%{transform:none}
+    7%{transform:translateY(-8px)}
+  }
+  @keyframes star-tw{
+    0%,100%{transform:rotate(0) scale(1)}
+    50%{transform:rotate(20deg) scale(1.2)}
   }
 
   /* ============ SEÇÕES ============ */
