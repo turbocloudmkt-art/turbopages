@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TurboBuilder para clientes TurboCloud | Sites com IA na conta que você já tem</title>
+<meta name="description" content="Já é cliente TurboCloud? Ative o TurboBuilder e crie landing pages profissionais com IA em minutos, direto do painel que você já usa, com Host Brasileiro e SSL.">
+<meta property="og:title" content="TurboBuilder para clientes TurboCloud">
+<meta property="og:description" content="A mesma infraestrutura que hospeda seus projetos agora cria seus sites com IA. Ative direto do seu painel TurboCloud.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="../assets/turbopages-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBFAFF;
+    --surface:#FFFFFF;
+    --ink:#191046;
+    --ink-2:#2B2158;
+    --muted:#6A6390;
+    --violet:#6D28D9;
+    --violet-bright:#8B5CF6;
+    --violet-deep:#4C1D95;
+    --violet-soft:#F2EDFD;
+    --border:#E8E4F5;
+    --green:#0E9F6E;
+    --green-soft:#E3F7EF;
+    --panel:#160F38;
+    --panel-border:rgba(255,255,255,.09);
+    --font-display:'Nunito',sans-serif;
+    --font-body:'Manrope',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:var(--violet);text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--violet);color:#fff}
+  :focus-visible{outline:3px solid var(--violet-bright);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  section{scroll-margin-top:88px}
+
+  h1,h2,h3{font-family:var(--font-display);color:var(--ink);letter-spacing:-.015em}
+  h1{font-size:clamp(2.2rem,4.4vw,3.2rem);font-weight:900;line-height:1.08}
+  h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:900;line-height:1.1}
+  h3{font-size:1.15rem;font-weight:900;line-height:1.3}
+  h1 .hl,h2 .hl{color:var(--violet)}
+  .lead{font-size:clamp(1rem,1.5vw,1.12rem);color:var(--muted);line-height:1.65}
+  .eyebrow{
+    font-family:var(--font-mono);font-size:.76rem;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--violet);
+    display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--violet-bright);border-radius:2px}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-family:var(--font-display);font-weight:700;font-size:1rem;
+    padding:15px 28px;border-radius:13px;border:none;cursor:pointer;
+    transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{color:#fff;background:var(--violet);box-shadow:0 12px 28px -10px rgba(109,40,217,.55);position:relative;overflow:hidden}
+  .btn-primary:hover{background:var(--violet-deep);color:#fff;transform:translateY(-2px)}
+  .btn-primary::after{content:"";position:absolute;top:0;bottom:0;left:-45%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-20deg)}
+  .btn-ghost{color:var(--ink);background:var(--surface);border:1.5px solid var(--border)}
+  .btn-ghost:hover{border-color:var(--violet-bright);color:var(--violet);transform:translateY(-2px)}
+  .btn-arrow::after{content:"→";position:static;inset:auto;width:auto;background:none;transform:none;margin-left:8px;transition:margin .15s ease}
+  .btn-arrow:hover::after{margin-left:12px;animation:none}
+  @media (prefers-reduced-motion: no-preference){
+    .btn-primary:not(.btn-arrow):hover::after{animation:shine .85s ease}
+  }
+  @keyframes shine{from{left:-45%}to{left:135%}}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:60;background:rgba(251,250,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .25s ease,box-shadow .25s ease}
+  .nav.is-scrolled{border-bottom-color:var(--border);box-shadow:0 6px 24px -18px rgba(25,16,70,.35)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 24px;max-width:1180px;margin:0 auto}
+  .nav-logo{display:flex;align-items:center;gap:10px}
+  .nav-logo img{height:40px;width:auto}
+  .logo-text{font-family:var(--font-display);font-weight:900;font-size:1.45rem;letter-spacing:-.01em;color:var(--ink);line-height:1}
+  .logo-text em{font-style:normal;color:var(--violet)}
+  .nav-tag{
+    font-family:var(--font-mono);font-size:.68rem;font-weight:600;
+    color:var(--violet-deep);background:var(--violet-soft);border:1px solid #E0D4FA;
+    padding:6px 12px;border-radius:999px;white-space:nowrap;
+  }
+  .nav-actions{display:flex;align-items:center;gap:14px}
+  .btn-sm{padding:11px 20px;font-size:.92rem;border-radius:11px}
+  .nav-actions .btn-sm svg{width:16px;height:16px}
+
+  /* HERO */
+  .hero{
+    position:relative;padding:84px 0 72px;
+    background:
+      radial-gradient(circle at 14% 8%, rgba(139,92,246,.10), transparent 42%),
+      radial-gradient(circle at 88% 20%, rgba(109,40,217,.08), transparent 40%);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(25,16,70,.10) 1px, transparent 1.4px);
+    background-size:26px 26px;
+    mask-image:linear-gradient(180deg,#000 0%,transparent 78%);
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 78%);
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero-grid > *{min-width:0}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--font-mono);font-size:.78rem;font-weight:500;color:var(--violet-deep);
+    background:var(--violet-soft);border:1px solid #E0D4FA;
+    padding:7px 15px;border-radius:999px;margin-bottom:26px;
+  }
+  .hero-badge svg{width:15px;height:15px;color:var(--violet);flex-shrink:0}
+  .hero h1 em{font-style:normal;color:var(--violet)}
+  .hero p.lead{max-width:540px;margin:22px 0 32px}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+  .btn svg{width:20px;height:20px;flex-shrink:0}
+  .hero-proofs{display:flex;flex-wrap:wrap}
+  .proof{
+    display:flex;align-items:center;gap:11px;
+    padding:0 24px;border-left:1px solid var(--border);
+    font-size:.88rem;font-weight:600;color:var(--muted);line-height:1.35;
+  }
+  .proof:first-child{padding-left:0;border-left:none}
+  .proof svg{width:32px;height:32px;color:var(--violet);flex-shrink:0}
+
+  /* cartão "sua conta" no hero */
+  .acct{
+    position:relative;border-radius:20px;overflow:hidden;
+    background:#fff;border:1px solid var(--border);
+    box-shadow:0 44px 84px -38px rgba(25,16,70,.35);
+  }
+  .acct-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--border);background:#FCFBFF}
+  .acct-bar i{width:11px;height:11px;border-radius:50%;display:block}
+  .acct-bar i:nth-child(1){background:#FF5F57}
+  .acct-bar i:nth-child(2){background:#FEBC2E}
+  .acct-bar i:nth-child(3){background:#28C840}
+  .acct-bar span{margin-left:10px;font-family:var(--font-mono);font-size:.72rem;color:var(--muted)}
+  .acct-body{padding:22px 20px}
+  .acct-row{
+    display:flex;align-items:center;gap:13px;
+    padding:14px;border:1px solid var(--border);border-radius:13px;margin-bottom:11px;
+  }
+  .acct-ico{width:44px;height:44px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--violet-soft);color:var(--violet)}
+  .acct-ico svg{width:21px;height:21px}
+  .acct-row b{font-family:var(--font-display);font-weight:900;font-size:.95rem;display:block;line-height:1.3}
+  .acct-row small{font-size:.76rem;color:var(--muted)}
+  .acct-row .ok{
+    margin-left:auto;font-family:var(--font-mono);font-size:.62rem;font-weight:600;
+    color:var(--green);background:var(--green-soft);padding:4px 10px;border-radius:999px;white-space:nowrap;
+  }
+  .acct-row.new{border:1.5px dashed #C9B4F2;background:linear-gradient(180deg,#FDFCFF,var(--violet-soft))}
+  .acct-row.new .acct-ico{background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff}
+  .acct-row.new .add{
+    margin-left:auto;font-family:var(--font-display);font-weight:700;font-size:.78rem;
+    color:#fff;background:var(--violet);padding:8px 14px;border-radius:9px;white-space:nowrap;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .acct-row.new .add{animation:pulse-add 2.4s ease infinite}
+  }
+  @keyframes pulse-add{
+    0%,100%{box-shadow:0 0 0 0 rgba(109,40,217,.4)}
+    50%{box-shadow:0 0 0 8px rgba(109,40,217,0)}
+  }
+
+  /* SEÇÕES */
+  .section{padding:88px 0 8px}
+  .section-head{max-width:680px;margin-bottom:48px}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .section-head.center .eyebrow{justify-content:center}
+  .section-head .lead{margin-top:14px}
+
+  /* VANTAGENS */
+  .perks{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .perk{
+    background:var(--surface);border:1px solid var(--border);border-radius:16px;
+    padding:28px 26px;display:flex;gap:18px;align-items:flex-start;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .perk:hover{transform:translateY(-4px);border-color:#D9CCF7;box-shadow:0 22px 44px -26px rgba(109,40,217,.35)}
+  .perk-ico{width:52px;height:52px;border-radius:15px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff}
+  .perk-ico svg{width:24px;height:24px}
+  .pk-violet{background:linear-gradient(135deg,#8B5CF6,#6D28D9);box-shadow:0 12px 26px -12px rgba(109,40,217,.6)}
+  .pk-green{background:linear-gradient(135deg,#34D399,#059669);box-shadow:0 12px 26px -12px rgba(5,150,105,.55)}
+  .pk-amber{background:linear-gradient(135deg,#FBBF24,#F59E0B);box-shadow:0 12px 26px -12px rgba(245,158,11,.55)}
+  .pk-blue{background:linear-gradient(135deg,#60A5FA,#2563EB);box-shadow:0 12px 26px -12px rgba(37,99,235,.55)}
+  .perk h3{margin-bottom:7px}
+  .perk p{font-size:.94rem;color:var(--muted)}
+
+  /* PASSOS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+  .step-num{
+    font-family:var(--font-mono);font-weight:600;font-size:.82rem;color:var(--violet);letter-spacing:.08em;
+    display:flex;align-items:center;justify-content:center;
+    width:48px;height:48px;border-radius:14px;
+    background:var(--violet-soft);border:1px solid #E0D4FA;margin-bottom:22px;
+  }
+  .step h3{margin-bottom:9px}
+  .step p{font-size:.95rem;color:var(--muted)}
+
+  /* PLANOS */
+  .plans{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:stretch;max-width:860px;margin:0 auto}
+  .plan{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:34px 30px}
+  .plan-hot{
+    border:2px solid transparent;
+    background:linear-gradient(#FDFCFF,#FDFCFF) padding-box,linear-gradient(120deg,#8B5CF6,#34D399) border-box;
+    box-shadow:0 32px 64px -32px rgba(109,40,217,.45);z-index:1;
+  }
+  .plan-hot::before{
+    content:"";position:absolute;inset:0;border-radius:18px;z-index:-1;pointer-events:none;
+    background:radial-gradient(240px 170px at 88% 10%,rgba(139,92,246,.22),transparent 70%),radial-gradient(220px 150px at 65% 0%,rgba(52,211,153,.16),transparent 70%);
+  }
+  .plan-flag{position:absolute;top:-13px;left:30px;font-family:var(--font-mono);font-size:.66rem;font-weight:600;letter-spacing:.1em;padding:6px 13px;border-radius:999px;color:#fff;background:var(--violet)}
+  .plan-head{display:flex;gap:16px;align-items:center;margin-bottom:26px}
+  .plan-ico{width:64px;height:64px;border-radius:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--violet-soft);color:var(--violet)}
+  .plan-ico svg{width:30px;height:30px}
+  .plan-name{font-family:var(--font-display);font-weight:800;font-size:1.3rem}
+  .plan-tag{font-size:.88rem;color:var(--muted);margin:4px 0 0}
+  .plan-price{display:flex;align-items:baseline;gap:6px}
+  .plan-price .cur{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--muted)}
+  .plan-price .val{font-family:var(--font-display);font-weight:800;font-size:3rem;letter-spacing:-.02em}
+  .plan-price .per{font-size:.88rem;color:var(--muted)}
+  .plan-note{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 24px;min-height:26px}
+  .note-chip{font-size:.75rem;font-weight:700;color:var(--green);background:var(--green-soft);padding:4px 11px;border-radius:999px}
+  .note-rest{font-size:.75rem;color:var(--muted)}
+  .btn-outline-v{color:var(--violet);border-color:#D9CCF7}
+  .btn-outline-v:hover{color:var(--violet)}
+  .plan .btn{width:100%}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:26px}
+  .plan li{display:flex;gap:11px;align-items:flex-start;font-size:.92rem;color:var(--ink-2)}
+  .plan li svg{width:19px;height:19px;flex-shrink:0;margin-top:2px}
+  .plans-note{
+    margin:34px auto 0;width:fit-content;max-width:100%;
+    display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:14px 24px;font-size:.9rem;text-align:center;
+  }
+  .plans-note svg{width:18px;height:18px;color:var(--violet);flex-shrink:0}
+  .plans-note b{color:var(--violet);font-weight:700}
+  .plans-note span{color:var(--muted)}
+
+  /* FAQ */
+  .faq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  .faq{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s ease}
+  .faq[data-open="true"]{border-color:#D9CCF7}
+  .faq-q{
+    width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:20px 24px;background:transparent;border:none;cursor:pointer;text-align:left;
+    font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--ink);
+  }
+  .faq-q .sign{
+    width:30px;height:30px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--violet-soft);color:var(--violet);
+    font-size:1.15rem;font-weight:500;line-height:1;transition:transform .25s ease;
+  }
+  .faq[data-open="true"] .faq-q .sign{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .faq-a p{padding:0 24px 22px;font-size:.95rem;color:var(--muted);max-width:660px}
+
+  /* CTA FINAL */
+  .final{padding:88px 0 96px}
+  .final-card{
+    position:relative;border-radius:26px;padding:64px 40px;text-align:center;overflow:hidden;
+    background:var(--panel);border:1px solid var(--panel-border);
+  }
+  .final-card::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(560px 260px at 50% -10%,rgba(139,92,246,.35),transparent),radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.4px);
+    background-size:auto,26px 26px;
+  }
+  .final-card > *{position:relative}
+  .final-card h2{color:#fff;max-width:680px;margin:0 auto 16px}
+  .final-card h2 .hl{color:#A78BFA}
+  .final-card .lead{color:#C3BBE6;max-width:520px;margin:0 auto 32px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);background:var(--surface)}
+  .footer-inner{
+    max-width:1180px;margin:0 auto;padding:26px 24px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+    font-size:.85rem;color:var(--muted);
+  }
+  .footer-logo{display:flex;align-items:center;gap:9px}
+  .footer-logo img{height:30px;width:auto}
+  .footer-logo .logo-text{font-size:1.15rem}
+
+  /* REVEAL */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.is-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* RESPONSIVO */
+  @media (max-width:1020px){
+    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .perks{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr;gap:32px}
+    .plans{grid-template-columns:1fr;max-width:460px}
+  }
+  @media (max-width:760px){
+    .nav-tag{display:none}
+    .nav-inner{gap:10px;padding:10px 16px}
+    .nav-logo img{height:30px}
+    .logo-text{font-size:1.1rem}
+    .hero{padding:56px 0 48px}
+    .section{padding:68px 0 8px}
+    .hero-ctas{flex-direction:column}
+    .hero-ctas .btn{width:100%}
+    .hero-proofs{justify-content:center}
+    .proof{padding:0 9px;font-size:.72rem;gap:7px}
+    .proof svg{width:20px;height:20px}
+    .final-card{padding:52px 24px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="TurboBuilder, ir para o site principal">
+      <img src="../assets/turbopages-mark-nav.png" alt="">
+      <span class="logo-text">Turbo<em>Builder</em></span>
+    </a>
+    <span class="nav-tag">exclusivo para clientes TurboCloud</span>
+    <div class="nav-actions">
+      <a href="#planos" class="btn btn-primary btn-sm">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/><path d="M18.5 14.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/></svg>
+        Ativar agora
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="topo">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg>
+        exclusivo para clientes TurboCloud
+      </div>
+      <h1>Sua hospedagem já é Turbo.<br><em>Agora seus sites também podem ser.</em></h1>
+      <p class="lead">Você já confia na TurboCloud para manter seus projetos no ar. Com o TurboBuilder, a mesma infraestrutura cria landing pages profissionais com IA, em minutos, contratado direto do painel que você já usa.</p>
+      <div class="hero-ctas">
+        <a href="#planos" class="btn btn-primary">Ativar o TurboBuilder
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+        <a href="#como" class="btn btn-ghost">Ver como funciona</a>
+      </div>
+      <div class="hero-proofs">
+        <span class="proof">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg>
+          Mesma conta<br>TurboCloud
+        </span>
+        <span class="proof">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 11.5l2 2 4-4.5"/></svg>
+          Suporte que<br>você já conhece
+        </span>
+        <span class="proof">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2.5" fill="#009C3B"/><path d="M12 7l7 5-7 5-7-5z" fill="#FFDF00"/><circle cx="12" cy="12" r="2.7" fill="#002776"/><path d="M9.6 11.4c1.6-.3 3.2.1 4.6 1.1" stroke="#fff" stroke-width=".55" fill="none"/></svg>
+          Host<br>Brasileiro
+        </span>
+      </div>
+    </div>
+
+    <!-- mock: seus serviços na TurboCloud -->
+    <div class="acct reveal" aria-label="Seus serviços na TurboCloud, com o TurboBuilder disponível para ativar">
+      <div class="acct-bar"><i></i><i></i><i></i><span>painel TurboCloud · seus serviços</span></div>
+      <div class="acct-body">
+        <div class="acct-row">
+          <span class="acct-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="7" rx="1.5"/><rect x="4" y="13" width="16" height="7" rx="1.5"/><path d="M7.5 7.5h.01M7.5 16.5h.01"/><path d="M14 7.5h3M14 16.5h3"/></svg></span>
+          <div><b>Hospedagem de sites</b><small>seu plano atual</small></div>
+          <span class="ok">✓ ativo</span>
+        </div>
+        <div class="acct-row">
+          <span class="acct-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 8.5 4 4 0 0117.5 18H7z"/></svg></span>
+          <div><b>VPS Cloud</b><small>seu plano atual</small></div>
+          <span class="ok">✓ ativo</span>
+        </div>
+        <div class="acct-row new">
+          <span class="acct-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/><path d="M18.5 14.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/></svg></span>
+          <div><b>TurboBuilder</b><small>sites com IA em minutos</small></div>
+          <span class="add">+ Ativar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- VANTAGENS -->
+<section class="section" id="vantagens">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Por que ativar</div>
+      <h2>O próximo passo natural<br>para quem já está na <span class="hl">TurboCloud</span></h2>
+    </div>
+    <div class="perks">
+      <div class="perk reveal">
+        <span class="perk-ico pk-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg></span>
+        <div>
+          <h3>Tudo na conta que você já tem</h3>
+          <p>Nada de novo cadastro. Você contrata o TurboBuilder na área de compras do seu painel TurboCloud, junto dos seus outros serviços.</p>
+        </div>
+      </div>
+      <div class="perk reveal">
+        <span class="perk-ico pk-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg></span>
+        <div>
+          <h3>Landing pages em minutos</h3>
+          <p>Descreva o negócio em uma frase e a IA gera a página completa: textos, design e seções, pronta para publicar.</p>
+        </div>
+      </div>
+      <div class="perk reveal">
+        <span class="perk-ico pk-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16.5a8 8 0 1114 0"/><path d="M12 13l3.5-4"/><circle cx="12" cy="14" r="1.4" fill="currentColor"/></svg></span>
+        <div>
+          <h3>A performance que você já conhece</h3>
+          <p>O mesmo Host Brasileiro dos seus projetos, com SSL e notas verdes no PageSpeed do Google, sem você otimizar nada.</p>
+        </div>
+      </div>
+      <div class="perk reveal">
+        <span class="perk-ico pk-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/><path d="M18.5 14.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/></svg></span>
+        <div>
+          <h3>Créditos de IA no seu ritmo</h3>
+          <p>Cada plano inclui créditos mensais para gerar páginas, no modo econômico ou alta qualidade. Perfeito para projetos próprios ou de clientes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO ATIVAR -->
+<section class="section" id="como">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Como ativar</div>
+      <h2>Três passos, começando<br>pelo painel que você <span class="hl">já usa</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Acesse seu painel TurboCloud</h3>
+        <p>Entre com o login que você já tem e abra a área de compras, a mesma onde você gerencia host e VPS.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h3>Assine um plano TurboBuilder</h3>
+        <p>Escolha Starter ou Agência e pronto: os créditos de IA ficam disponíveis na hora, na sua conta.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h3>Descreva e publique</h3>
+        <p>Conte o que é o negócio, a IA cria a landing page e você publica com SSL e Host Brasileiro em minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="section" id="planos">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Planos</div>
+      <h2>Escolha seu plano e <span class="hl">ative hoje</span></h2>
+      <p class="lead">Contratação direto na área de compras do seu painel TurboCloud.</p>
+    </div>
+    <div class="plans">
+      <div class="plan reveal">
+        <div class="plan-head">
+          <span class="plan-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 12c1-4.5 4.5-8 10-9-1 5.5-4.5 9-9 10"/><path d="M9.5 12l2.5 2.5"/><circle cx="15.5" cy="8.5" r="1.3"/><path d="M7.5 14.5c-1.8.6-3 2.2-3.5 4.5 2.3-.5 3.9-1.7 4.5-3.5"/><path d="M6.5 10.5l-3 1 2 1.5"/><path d="M13.5 17.5l-1 3-1.5-2"/></svg>
+          </span>
+          <div>
+            <div class="plan-name">Starter</div>
+            <p class="plan-tag">Para colocar suas primeiras páginas no ar.</p>
+          </div>
+        </div>
+        <div class="plan-price"><span class="cur">R$</span><span class="val">49,90</span><span class="per">/mês</span></div>
+        <div class="plan-note"><span class="note-chip">300 créditos de IA/mês</span><span class="note-rest">≈ 4 landing pages</span></div>
+        <a href="#" class="btn btn-ghost btn-outline-v btn-arrow">Assinar Starter</a>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#10B981"/><path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 300 créditos de IA por mês</li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#10B981"/><path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Aproximadamente 4 landing pages geradas por IA</li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#10B981"/><path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Host Brasileiro TurboCloud com SSL</li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#10B981"/><path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Editor com IA e histórico de versões</li>
+        </ul>
+      </div>
+      <div class="plan plan-hot reveal">
+        <div class="plan-flag">★ MAIS POPULAR</div>
+        <div class="plan-head">
+          <span class="plan-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M4 13h16"/></svg>
+          </span>
+          <div>
+            <div class="plan-name">Agência</div>
+            <p class="plan-tag">Para agências e alto volume de páginas.</p>
+          </div>
+        </div>
+        <div class="plan-price"><span class="cur">R$</span><span class="val">89,90</span><span class="per">/mês</span></div>
+        <div class="plan-note"><span class="note-chip">4000 créditos de IA/mês</span><span class="note-rest">≈ 57 landing pages</span></div>
+        <a href="#" class="btn btn-primary btn-arrow">Assinar Agência</a>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#6D28D9"/><path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 4000 créditos de IA por mês</li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#6D28D9"/><path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Aproximadamente 57 landing pages geradas por IA</li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#6D28D9"/><path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Host Brasileiro TurboCloud com SSL</li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#6D28D9"/><path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Ideal para gerenciar páginas de vários clientes</li>
+        </ul>
+      </div>
+    </div>
+    <div class="plans-note reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 11.5l2 2 4-4.5"/></svg>
+      <b>Ambiente 100% seguro e confiável</b>
+      <span>· Seus dados sempre protegidos com SSL e backups diários.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow">FAQ</div>
+      <h2>Dúvidas de quem já é cliente</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Preciso criar outra conta para usar o TurboBuilder?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Não. O TurboBuilder é contratado dentro do seu painel TurboCloud, na mesma área de compras onde você gerencia hospedagem, VPS e outros serviços.</p></div>
+      </div>
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Posso usar um domínio que já tenho na TurboCloud?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Sim. Você conecta qualquer domínio próprio em poucos cliques, ou usa um subdomínio grátis para começar e troca depois.</p></div>
+      </div>
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Como funcionam os créditos de IA?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Cada geração de página consome créditos. O Starter inclui 300 créditos por mês (cerca de 4 landing pages) e o Agência, 4000 (cerca de 57). Você acompanha o saldo direto no painel.</p></div>
+      </div>
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Preciso saber programar?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Não. Você descreve o que quer em português e a IA constrói tudo. Para ajustar, é só pedir no chat do editor ou arrastar os elementos.</p></div>
+      </div>
+      <div class="faq reveal" data-open="false">
+        <button class="faq-q" aria-expanded="false">
+          Posso cancelar quando quiser?
+          <span class="sign" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Sim. Os planos são flexíveis e você pode cancelar a qualquer momento, sem multa ou fidelidade, direto no painel.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <div class="final-card reveal">
+      <h2>Seus próximos sites, na infraestrutura<br>que você <span class="hl">já confia</span></h2>
+      <p class="lead">Ative o TurboBuilder no seu painel TurboCloud e publique sua primeira landing page ainda hoje.</p>
+      <a href="#planos" class="btn btn-primary btn-arrow">Ativar o TurboBuilder</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo" aria-label="TurboBuilder, ir para o site principal">
+      <img src="../assets/turbopages-mark-nav.png" alt="">
+      <span class="logo-text">Turbo<em>Builder</em></span>
+    </a>
+    <span>© <span id="year">2026</span> TurboBuilder · TurboCloud. Todos os direitos reservados.</span>
+    <a href="/">Conhecer o TurboBuilder completo →</a>
+  </div>
+</footer>
+
+<script>
+  // Sombra da nav ao rolar
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Revelar ao rolar
+  document.querySelectorAll('.perks,.steps,.plans').forEach(grid => {
+    [...grid.children].forEach((el, i) => {
+      if (el.classList.contains('reveal')) el.style.transitionDelay = (i * 90) + 'ms';
+    });
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-in');
+        setTimeout(() => { e.target.style.transitionDelay = ''; }, 1400);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // FAQ acordeão
+  document.querySelectorAll('.faq').forEach(faq => {
+    const q = faq.querySelector('.faq-q');
+    const a = faq.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const willOpen = faq.dataset.open !== 'true';
+      document.querySelectorAll('.faq[data-open="true"]').forEach(other => {
+        other.dataset.open = 'false';
+        other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        other.querySelector('.faq-a').style.maxHeight = '0px';
+      });
+      faq.dataset.open = String(willOpen);
+      q.setAttribute('aria-expanded', String(willOpen));
+      a.style.maxHeight = willOpen ? a.scrollHeight + 'px' : '0px';
+    });
+  });
+
+  // Ano corrente
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
